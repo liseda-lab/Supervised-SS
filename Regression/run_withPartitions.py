@@ -170,11 +170,8 @@ def run_cross_validation(algorithms, proxy, path_file_SS, path_dataset_file, dat
         y_train, y_test = list(y_train), list(y_test)
 
         list_ss = np.array(list_ss)
-        list_ss_baselines = np.array(list_ss_baselines)
-
         X_train, X_test = list_ss[train_index], list_ss[test_index]
-        X_train_baselines, X_test_baselines = list_ss_baselines[train_index], list_ss_baselines[test_index]
-        X_train, X_test, X_train_baselines, X_test_baselines = list(X_train), list(X_test), list(X_train_baselines), list(X_test_baselines)
+        X_train, X_test = list(X_train), list(X_test)
 
         print('#########' + SSM + '#########')
 
