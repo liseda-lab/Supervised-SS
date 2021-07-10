@@ -138,7 +138,6 @@ def run_cross_validation(algorithms, proxy, path_file_SS, path_dataset_file, dat
     :param run_baselines: boolean. True for running the baselines and False otherwise. The default value is False;
     """
     list_ents, list_ss, list_ss_baselines, list_labels = read_SS_dataset_file(path_file_SS, path_dataset_file)
-    Run = 1
 
     if run_baselines:
         aspects_baselines = aspects + ["Avg", "Max"]
@@ -155,9 +154,9 @@ def run_cross_validation(algorithms, proxy, path_file_SS, path_dataset_file, dat
         file_ML.close()
 
     n_pairs = len(list_labels)
-    for index_partition in range(1, n_partition + 1):
+    for Run in range(1, n_partition + 1):
 
-        file_partition = path_partition + str(index_partition) + '.txt'
+        file_partition = path_partition + str(Run) + '.txt'
         test_index = process_indexes_partition(file_partition)
         train_index = list(set(range(0, n_pairs)) - set(test_index))
         
@@ -192,7 +191,7 @@ def run_cross_validation(algorithms, proxy, path_file_SS, path_dataset_file, dat
 
         #############  MACHINE LEARNING
         print('*******************')
-        print('MACHINE LEARNING BASELINES .....')
+        print('MACHINE LEARNING .....')
         print('*******************')
         start_ML = time.time()
 
@@ -224,8 +223,6 @@ def run_cross_validation(algorithms, proxy, path_file_SS, path_dataset_file, dat
         end_ML = time.time()
         print('Execution Time: ' + str(end_ML - start_ML))
         #############  END MACHINE LEARNING
-
-        Run = Run + 1
 
     print('\n')
     print('###########################')
