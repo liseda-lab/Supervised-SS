@@ -130,7 +130,7 @@ python3 Regression/run_make_shuffle_partitions.py
 This command will create, for each dataset, **10 Partitions files** and place them in [Regression/Results/Datasetname](https://github.com/ritatsousa/Supervised-SS/tree/master/Regression/Results) folder. Each line of these files is an index (corresponding to a pair) of the dataset.
 
 ### 4.1. Using Bemchmark datasets
-With semantic similarities, run the command for PPI prediction using evolved combinations:
+With semantic similarities, run the command:
 ```
 python3 Regression/run_withPartitions.py
 ```
