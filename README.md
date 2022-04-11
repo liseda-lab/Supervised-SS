@@ -12,7 +12,7 @@
 Our toolkit needs a KG and a list of instance pairs with proxy similarity values and is able to: (1) identify the SAs that describe the KG entities (2) compute KG-based similarities according to different SAs and using different SSMs; (3) train supervised ML algorithms to learn a supervised semantic similarity according to the similarity proxy for which we want to tailor the similarity; (4) evaluate the supervised semantic similarity against a set of baselines.
 This framework is independent of the SAs, the specific implementation of KG-based similarity and the ML algorithm employed in supervised learning.
 
-<img src="https://github.com/liseda-lab/Supervised-SS/blob/main/Framework.png" width="128"/>
+<img src="https://github.com/liseda-lab/Supervised-SS/blob/main/Framework.png"/>
 
 
 ## Datasets and Knowledge Graph
