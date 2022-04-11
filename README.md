@@ -1,28 +1,34 @@
-# Supervised-SS
+# The Supervised Semantic Similarity Toolkit
 
 **SS**: Semantic Similarity; **SSM**: Semantic Similarity Measure; **GO**: Gene Ontology; **HPO**: Human Phenotype Ontology; **PPI**: Protein-Protein Interaction; **GP**: Genetic Programming; **LR**: Linear Regression; **XGB**: XGBoost; **RF**: Random Forest; **BR**: Bayesian Ridge; **DT**: Decision Tree; **MLP**: Multilayer Perceptron; **KNN**: K-Nearest Neighbor.
-
-
 
 ## Pre-requesites
 * install python 3.6.8;
 * install java JDK 11.0.4;
 * install python libraries by running the following command:  ```pip install -r req.txt```.
 
+## The Toolkit
 
+Our toolkit needs a KG and a list of instance pairs with proxy similarity values and is able to: (1) identify the SAs that describe the KG entities (2) compute KG-based similarities according to different SAs and using different SSMs; (3) train supervised ML algorithms to learn a supervised semantic similarity according to the similarity proxy for which we want to tailor the similarity; (4) evaluate the supervised semantic similarity against a set of baselines.
+This framework is independent of the SAs, the specific implementation of KG-based similarity and the ML algorithm employed in supervised learning.
 
-## 1. Benchmark Datasets
+![alt text](https://github.com/ritatsousa/Supervised-SS/tree/master/Framework.png)
+
+## Datasets and Knowledge Graph
 In order for the program to work, provide a text file with the entity pairs and respective similarity proxy. 
-This tab-delimited text file have 3 columns: 
+This tab-delimited text file must have 3 columns: 
 * 1st column - Ent1 Identifier;	 
 * 2nd column - Ent2 Identifier;
 * 3rd column - Proxy Similarity. 
 
-In this work, we used 21 Benchmark datasets (PPI-ALL1, PPI-ALL3, PPI-DM1, PPI-DM3, PPI-HS1, PPI-HS3, PPI-SC1, PPI-SC3, PPI-EC1, PPI-EC3, MF-ALL1, MF-ALL3, MF-DM1, MF-DM3, MF-HS1, MF-HS3, MF-SC1, MF-SC3, MF-EC1, MF-EC3, HPO-dataset) of different species for evaluation. The data is in [Data/kgsimDatasets](https://github.com/ritatsousa/Supervised-SS/tree/master/Data/kgsimDatasets) folder. 
+This toolkit was successfully applied in a set of 21 protein and gene benchmark datasets (PPI-ALL1, PPI-ALL3, PPI-DM1, PPI-DM3, PPI-HS1, PPI-HS3, PPI-SC1, PPI-SC3, PPI-EC1, PPI-EC3, MF-ALL1, MF-ALL3, MF-DM1, MF-DM3, MF-HS1, MF-HS3, MF-SC1, MF-SC3, MF-EC1, MF-EC3, HPO-dataset) of different species for evaluation. The data is in [Data/kgsimDatasets](https://github.com/ritatsousa/Supervised-SS/tree/master/Data/kgsimDatasets) folder. 
+
+
+## 1. Semantic Aspects Selection 
 
 
 
-## 2. Taxonomic Semantic Similarity Computation
+## 2a. Taxonomic Semantic Similarity Computation
 For taxonomic semantic similarity calculation, provide:
 * A dataset file with the previously described format;
 * A ontology file in OWL format;
@@ -58,9 +64,9 @@ The new SS files are placed in [SS_Calculation/SS_files/datasetname](https://git
 
 
 
-## 3. Embedding Semantic Similarity Computation
+## 2b. Embedding Semantic Similarity Computation
 
-### 3.1. Compute RDF2Vec Embeddings for each semantic aspect
+### 2.1. Compute RDF2Vec Embeddings for each semantic aspect
 To calculate RDF2Vec embeddings, an RDF2Vec python implementation was used. The implementation is available on GitHub https://github.com/IBCNServices/pyRDF2Vec.
 ```
 RDF2Vec: RDF graph embeddings for data mining
@@ -68,7 +74,7 @@ Petara Ristoski and Heiko Paulheim
 International Semantic Web Conference, Springer, Cham, 2016 (pp. 498-514)
 ```
 
-#### 3.1.1. Using Bemchmark datasets
+#### 2.1.1. Using Bemchmark datasets
 In RDF2Vec, a set of sequences was generated from Weisfeiler-Lehman subtree kernels.
 For the Weisfeiler-Lehman algorithm, we use walks with depth 8, and we extracted a limited number of 500 random walks for each entity. The corpora of sequences were used to build a Skip-Gram model with the following parameters: window size=5; number of iterations=10; entity vector size=200.
 
@@ -83,7 +89,7 @@ For each gene dataset, this command creates **4 embedding files** (4 semantic as
 The description of the embedding text file is in [SS_Embedding_Calculation/Embeddings/Embeddings_format.txt](https://github.com/ritatsousa/Supervised-SS/blob/master/SS_Embedding_Calculation/Embeddings/Embeddings_format.txt) file. The filename is in the format “Embeddings_datasetname_skig-gram_wl_aspect.txt”. 
 
 
-### 3.2. Compute OpenKE Embeddings for each semantic aspect
+### 2.2. Compute OpenKE Embeddings for each semantic aspect
 To compute embeddings using popular graph embeddings methods, OpenKE was used. OpenKE is an open-source framework for knowledge embedding organized by THUNLP based on the TensorFlow toolkit. OpenKE provides fast and stable toolkits, including the most popular knowledge representation learning (KRL) methods. More information is available on their website (http://openke.thunlp.org/). The software is available on GitHub (https://github.com/thunlp/OpenKE/tree/OpenKE-Tensorflow1.0) under a MIT License.
 ```
 OpenKE: An Open Toolkit for Knowledge Embedding
@@ -94,7 +100,7 @@ Proceedings of EMNLP, 2018 (pp. 139-144)
 **NOTE**: OpenKE is only implemented for Linux system.
 
 
-#### 3.2.1. Using Bemchmark datasets
+#### 2.2.1. Using Bemchmark datasets
 Run the command to calculate the embeddings for each protein using OpenKE implementation for 2 embedding methods (TransE, distMult):
 ```
 python3 SS_Embedding_Calculation/run_OpenKEmodel.py
@@ -107,9 +113,9 @@ For each gene dataset, this command creates **4 embedding files** (4 semantic as
 The description of the embedding text file is in [SS_Embedding_Calculation/Embeddings/Embeddings_format.txt](https://github.com/ritatsousa/Supervised-SS/blob/master/SS_Embedding_Calculation/Embeddings/Embeddings_format.txt) file. The filename is in the format “Embeddings_datasetname_method_aspect.txt”. 
 
 
-### 3.3. Compute the Embedding Semantic Similarity for each pair
+### 2.3. Compute the Embedding Semantic Similarity for each pair
 
-#### 3.3.1. Using Bemchmark datasets
+#### 2.3.1. Using Bemchmark datasets
 After generating embeddings for each semantic aspect and then calculated the cosine similarity for each pair
 in datasets.
 Run the command for calculating embedding similarity for each semantic aspect:
@@ -122,14 +128,14 @@ The format of each line of embedding similarity file is "Ent1  Ent2	ES_SA1	ES_SA
 
 
 
-## 4. Learn supervised similarity
+## 3. Supervised Similarity Learning
 For 10-cross-validation purposes, run the command to split each dataset into ten partitions:
 ```
 python3 Regression/run_make_shuffle_partitions.py
 ```
 This command will create, for each dataset, **10 Partitions files** and place them in [Regression/Results/Datasetname](https://github.com/ritatsousa/Supervised-SS/tree/master/Regression/Results) folder. Each line of these files is an index (corresponding to a pair) of the dataset.
 
-### 4.1. Using Bemchmark datasets
+### 3.1. Using Benchmark datasets
 With semantic similarities, run the command:
 ```
 python3 Regression/run_withPartitions.py
@@ -138,3 +144,6 @@ For running the baselines (static combinations of semantic aspects), run the com
 ```
 python3 Regression/run_withPartitions.py True
 ```
+
+
+## 4. Supervised Similarity Evaluation 
