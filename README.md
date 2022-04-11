@@ -42,12 +42,14 @@ As default, our toolkit uses subgraphs rooted in the classes at a distance of on
 However, SAs can also be manually defined by selecting the root classes that anchor the aspects.
 
 
+### Using Biomedical Benchmark Datasets
 
-### Biomedical Benchmark Datasets
+For the protein datasets, we consider the GO aspects as semantic aspects.
+For the gene dataset, in addition to the three GO aspects, the similarity is also calculated for the HP phenotypic abnormality subgraph. Therefore, instead of three semantic aspects, we consider four semantic aspects.
 
 
 
-## 2a. Taxonomic Semantic Similarity Computation
+## 2A. Taxonomic Semantic Similarity Computation
 For taxonomic semantic similarity calculation, provide:
 * A dataset file with the previously described format;
 * A ontology file in OWL format;
@@ -60,9 +62,7 @@ Sébastien Harispe*, Sylvie Ranwez, Stefan Janaqi and Jacky Montmain
 Bioinformatics 2014 30(5): 740-742. doi: 10.1093/bioinformatics/btt581
 ```
 
-
-
-### 2.1. Using Bemchmark datasets
+### Using Biomedical Benchmark Datasets
 In Linux, compile the command:
 ```
 javac -cp ".:./SS_Calculation/jar_files/*" ./SS_Calculation/Run_SS_calculation.java
@@ -83,9 +83,10 @@ The new SS files are placed in [SS_Calculation/SS_files/datasetname](https://git
 
 
 
-## 2b. Embedding Semantic Similarity Computation
+## 2B. Embedding Semantic Similarity Computation
 
-### 2.1. Compute RDF2Vec Embeddings for each semantic aspect
+
+### 2B.1. RDF2Vec Embeddings Computation
 To calculate RDF2Vec embeddings, an RDF2Vec python implementation was used. The implementation is available on GitHub https://github.com/IBCNServices/pyRDF2Vec.
 ```
 RDF2Vec: RDF graph embeddings for data mining
@@ -93,7 +94,7 @@ Petara Ristoski and Heiko Paulheim
 International Semantic Web Conference, Springer, Cham, 2016 (pp. 498-514)
 ```
 
-#### 2.1.1. Using Bemchmark datasets
+#### Using Biomedical Benchmark Datasets
 In RDF2Vec, a set of sequences was generated from Weisfeiler-Lehman subtree kernels.
 For the Weisfeiler-Lehman algorithm, we use walks with depth 8, and we extracted a limited number of 500 random walks for each entity. The corpora of sequences were used to build a Skip-Gram model with the following parameters: window size=5; number of iterations=10; entity vector size=200.
 
@@ -108,7 +109,7 @@ For each gene dataset, this command creates **4 embedding files** (4 semantic as
 The description of the embedding text file is in [SS_Embedding_Calculation/Embeddings/Embeddings_format.txt](https://github.com/ritatsousa/Supervised-SS/blob/master/SS_Embedding_Calculation/Embeddings/Embeddings_format.txt) file. The filename is in the format “Embeddings_datasetname_skig-gram_wl_aspect.txt”. 
 
 
-### 2.2. Compute OpenKE Embeddings for each semantic aspect
+### 2B.2. OpenKE Embeddings Computation
 To compute embeddings using popular graph embeddings methods, OpenKE was used. OpenKE is an open-source framework for knowledge embedding organized by THUNLP based on the TensorFlow toolkit. OpenKE provides fast and stable toolkits, including the most popular knowledge representation learning (KRL) methods. More information is available on their website (http://openke.thunlp.org/). The software is available on GitHub (https://github.com/thunlp/OpenKE/tree/OpenKE-Tensorflow1.0) under a MIT License.
 ```
 OpenKE: An Open Toolkit for Knowledge Embedding
@@ -119,7 +120,9 @@ Proceedings of EMNLP, 2018 (pp. 139-144)
 **NOTE**: OpenKE is only implemented for Linux system.
 
 
-#### 2.2.1. Using Bemchmark datasets
+#### Using Biomedical Benchmark Datasets
+
+The default parameters given by OpenKE were used.
 Run the command to calculate the embeddings for each protein using OpenKE implementation for 2 embedding methods (TransE, distMult):
 ```
 python3 SS_Embedding_Calculation/run_OpenKEmodel.py
@@ -132,9 +135,25 @@ For each gene dataset, this command creates **4 embedding files** (4 semantic as
 The description of the embedding text file is in [SS_Embedding_Calculation/Embeddings/Embeddings_format.txt](https://github.com/ritatsousa/Supervised-SS/blob/master/SS_Embedding_Calculation/Embeddings/Embeddings_format.txt) file. The filename is in the format “Embeddings_datasetname_method_aspect.txt”. 
 
 
-### 2.3. Compute the Embedding Semantic Similarity for each pair
 
-#### 2.3.1. Using Bemchmark datasets
+### 2B.3. OWL2Vec* Embeddings Computation
+
+To calculate OWL2Vec* embeddings, it was used the implementation available on GitHub https://github.com/KRR-Oxford/OWL2Vec-Star.
+```
+OWL2vec*: Embedding of owl ontologies
+Jiaoyan Chen et al.
+Machine Learning, 110(7), 1813-1845
+```
+
+#### Using Biomedical Benchmark Datasets
+
+In OWL2Vec*, a set of sequences was generated from Weisfeiler-Lehman subtree kernels.
+For the Weisfeiler-Lehman algorithm, we use walks with depth 8, and we extracted a limited number of 500 random walks for each entity. The corpora of sequences were used to build a Skip-Gram model with the following parameters: window size=5; number of iterations=10; entity vector size=200.
+
+### 2B.4. Compute the Embedding Semantic Similarity for each pair
+
+
+#### Using Biomedical Benchmark Datasets
 After generating embeddings for each semantic aspect and then calculated the cosine similarity for each pair
 in datasets.
 Run the command for calculating embedding similarity for each semantic aspect:
@@ -146,7 +165,6 @@ The filename is in the format "embedss_200_model_datasetname.txt".
 The format of each line of embedding similarity file is "Ent1  Ent2	ES_SA1	ES_SA2	ES_SA3	ES_SA4"; 
 
 
-
 ## 3. Supervised Similarity Learning
 For 10-cross-validation purposes, run the command to split each dataset into ten partitions:
 ```
@@ -154,7 +172,8 @@ python3 Regression/run_make_shuffle_partitions.py
 ```
 This command will create, for each dataset, **10 Partitions files** and place them in [Regression/Results/Datasetname](https://github.com/ritatsousa/Supervised-SS/tree/master/Regression/Results) folder. Each line of these files is an index (corresponding to a pair) of the dataset.
 
-### 3.1. Using Benchmark datasets
+
+#### Using Biomedical Benchmark Datasets
 With semantic similarities, run the command:
 ```
 python3 Regression/run_withPartitions.py
