@@ -145,6 +145,35 @@ The format of each line of embedding similarity file is "Ent1  Ent2	ES_SA1	ES_SA
 
 
 ## 3. Supervised Similarity Learning
+
+To train a supervised semantic similarity according to the similarity proxy, eight representative ML algorithms for regression can be employed: LR, BR, KNN, GP, DT, MLP, RF, XGB. 
+
+Except for GP, XGB and RF, the default parameters are the default scikit-learn values. 
+
+For running GP, we use gplearn 3.0 (https://gplearn.readthedocs.io/en/stable/), a freely available package that runs with the scikit-learn library with the parameters:
+
+Parameter | Value
+------------- | -------------
+Population size | 500
+Number of generations | 50
+Fitness Function | RMSE
+Tournament size | 20
+Stopping criteria | 0.0
+Range of constants to include in formulas | [-1.0,1.0]
+Range of tree depths for the initial population | [2,6]
+Initialization method | half and half
+Probability of crossover on a tournament winner | 0.9
+Probability of subtree mutation on a tournament winner | 0.01
+Probability of hoist mutation on a tournament winner | 0.01
+Probability of point mutation on a tournament winner | 0.01
+Probability of any given node will be mutated, for point mutation | 0.05
+
+For XGB, we use the XGBoost 1.1.1 package (https://xgboost.readthedocs.io), with the values of some parameters altered to maximize the performance of the model, through grid search. 
+
+For RF, using scikit-learn, we also optimize some parameters:
+
+
+
 For 10-cross-validation purposes, run the command to split each dataset into ten partitions:
 ```
 python3 Regression/run_make_shuffle_partitions.py
