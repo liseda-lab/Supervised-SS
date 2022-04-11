@@ -170,9 +170,18 @@ Probability of any given node will be mutated, for point mutation | 0.05
 
 For XGB, we use the XGBoost 1.1.1 package (https://xgboost.readthedocs.io), with the values of some parameters altered to maximize the performance of the model, through grid search. 
 
+Parameter | Value
+------------- | -------------
+Maximum depth | 2,4,6
+Number of estimators |  50,100,200
+Learning rate | 0.1, 0.01, 0.001
+        
 For RF, using scikit-learn, we also optimize some parameters:
 
-
+Parameter | Value
+------------- | -------------
+Maximum depth | 2,4,6, None
+Number of estimators |  50,100,200      
 
 For 10-cross-validation purposes, run the command to split each dataset into ten partitions:
 ```
@@ -184,10 +193,14 @@ With semantic similarities, run the command:
 ```
 python3 Regression/run_withPartitions.py
 ```
+
+
+
+## 4. Supervised Similarity Evaluation 
+
+We compute the static similarity for each semantic aspect and use, as baselines, the single aspect similarities and two well-known strategies for combining the single aspect scores, the average and maximum.
+
 For running the baselines (static combinations of semantic aspects), run the command:
 ```
 python3 Regression/run_withPartitions.py True
 ```
-
-
-## 4. Supervised Similarity Evaluation 
