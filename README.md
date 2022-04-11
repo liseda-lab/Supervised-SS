@@ -35,18 +35,14 @@ In the MF (also called PFAM) datasets, two proxies of protein similarity based o
 In PPI protein datasets, two similarity proxies were also employed: sequence similarity and protein-protein interactions. 
 For the HPO-dataset, the proxy similarity is based on phenotypic series.
 
+Regarding the semantic aspects, for the protein datasets, we consider the GO aspects as semantic aspects.
+For the gene dataset, in addition to the three GO aspects, the similarity is also calculated for the HP phenotypic abnormality subgraph. Therefore, instead of three semantic aspects, we consider four semantic aspects.
+
 
 ## 1. Semantic Aspects Selection 
 
 As default, our toolkit uses subgraphs rooted in the classes at a distance of one from the KG root class or the subgraphs when the KGs have multiple roots as SAs. 
 However, SAs can also be manually defined by selecting the root classes that anchor the aspects.
-
-
-### Using Biomedical Benchmark Datasets
-
-For the protein datasets, we consider the GO aspects as semantic aspects.
-For the gene dataset, in addition to the three GO aspects, the similarity is also calculated for the HP phenotypic abnormality subgraph. Therefore, instead of three semantic aspects, we consider four semantic aspects.
-
 
 
 ## 2A. Taxonomic Semantic Similarity Computation
@@ -62,7 +58,6 @@ Sébastien Harispe*, Sylvie Ranwez, Stefan Janaqi and Jacky Montmain
 Bioinformatics 2014 30(5): 740-742. doi: 10.1093/bioinformatics/btt581
 ```
 
-### Using Biomedical Benchmark Datasets
 In Linux, compile the command:
 ```
 javac -cp ".:./SS_Calculation/jar_files/*" ./SS_Calculation/Run_SS_calculation.java
@@ -74,10 +69,7 @@ java -cp ".:./SS_Calculation/jar_files/*" SS_Calculation/Run_SS_calculation
 
 **NOTE**: To run in Windows, replace ".:." per ".;.".
 
-This command will create, for each protein dataset, **SS files** (one for each SSM) with the SS between each pair of entities for each semantic aspect (biological process, cellular component and molecular function) using six different SSMs (ResnikMax_ICSeco, ResnikMax_ICResnik, ResnikBMA_ICSeco, ResnikBMA_ICResnik, simGIC_ICSeco, simGIC_ICResnik). The description of this text file is in [SS_Calculation/SS_files/SS_file format_GO.txt](https://github.com/ritatsousa/Supervised-SS/blob/master/SS_Calculation/SS_files/SS_file_format_GO.txt) file. 
-
-This command will create, for each gene dataset, **SS files** (one for each SSM) with the SS between each pair of proteins for each semantic aspect (HPO, biological process, cellular component and molecular function) using six different SSMs (ResnikMax_ICSeco, ResnikMax_ICResnik, ResnikBMA_ICSeco, ResnikBMA_ICResnik, simGIC_ICSeco, simGIC_ICResnik). 
-The description of this text file is in [SS_Calculation/SS_files/SS_file_format_HPOandGO.txt](https://github.com/ritatsousa/Supervised-SS/blob/master/SS_Calculation/SS_files/SS_file_format_HPOandGO.txt) file. 
+This command will create, for each dataset, **SS files** (one for each SSM) with the SS between each pair of entities for each semantic aspect using six different SSMs (ResnikMax_ICSeco, ResnikMax_ICResnik, ResnikBMA_ICSeco, ResnikBMA_ICResnik, simGIC_ICSeco, simGIC_ICResnik). The description of this text file is in [SS_Calculation/SS_files/SS_file format_GO.txt](https://github.com/ritatsousa/Supervised-SS/blob/master/SS_Calculation/SS_files/SS_file_format_GO.txt) file. 
 
 The new SS files are placed in [SS_Calculation/SS_files/datasetname](https://github.com/ritatsousa/Supervised-SS/tree/master/SS_Calculation/SS_files) folder.
 
@@ -94,18 +86,15 @@ Petara Ristoski and Heiko Paulheim
 International Semantic Web Conference, Springer, Cham, 2016 (pp. 498-514)
 ```
 
-#### Using Biomedical Benchmark Datasets
-In RDF2Vec, a set of sequences was generated from Weisfeiler-Lehman subtree kernels.
-For the Weisfeiler-Lehman algorithm, we use walks with depth 8, and we extracted a limited number of 500 random walks for each entity. The corpora of sequences were used to build a Skip-Gram model with the following parameters: window size=5; number of iterations=10; entity vector size=200.
+As default, in RDF2Vec, a set of sequences was generated from Weisfeiler-Lehman subtree kernels.
+For the Weisfeiler-Lehman algorithm, we use as default walks with depth 8, and we extracted a limited number of 500 random walks for each entity. The corpora of sequences were used to build a Skip-Gram model with the following default parameters: window size=5; number of iterations=10; entity vector size=200.
+However, all the parameters can be changed in the beginning of the python file [SS_Embedding_Calculation/run_RDF2VecEmbeddings.py].
 
 Run the command to calculate the embeddings for each protein using rdf2vec implementation:
 ```
 python3 SS_Embedding_Calculation/run_RDF2VecEmbeddings.py
 ```
-For each protein dataset, this command creates **3 embedding files** (one for each GO semantic apect: biological_process, cellular_component aspect, molecular_function) and place them in [SS_Embedding_Calculation/Embeddings/datasetname/aspect](https://github.com/ritatsousa/Supervised-SS/tree/master/SS_Embedding_Calculation/Embeddings) folder.
-
-For each gene dataset, this command creates **4 embedding files** (4 semantic aspects: HPO, biological_process, cellular_component aspect, molecular_function) and place them in [SS_Embedding_Calculation/Embeddings/datasetname/aspect](https://github.com/ritatsousa/Supervised-SS/tree/master/SS_Embedding_Calculation/Embeddings) folder.
-
+For each dataset, this command creates **embedding files** (one for each semantic aspect) and place them in [SS_Embedding_Calculation/Embeddings/datasetname/aspect](https://github.com/ritatsousa/Supervised-SS/tree/master/SS_Embedding_Calculation/Embeddings) folder.
 The description of the embedding text file is in [SS_Embedding_Calculation/Embeddings/Embeddings_format.txt](https://github.com/ritatsousa/Supervised-SS/blob/master/SS_Embedding_Calculation/Embeddings/Embeddings_format.txt) file. The filename is in the format “Embeddings_datasetname_skig-gram_wl_aspect.txt”. 
 
 
@@ -119,19 +108,12 @@ Proceedings of EMNLP, 2018 (pp. 139-144)
 
 **NOTE**: OpenKE is only implemented for Linux system.
 
-
-#### Using Biomedical Benchmark Datasets
-
-The default parameters given by OpenKE were used.
-Run the command to calculate the embeddings for each protein using OpenKE implementation for 2 embedding methods (TransE, distMult):
+The default parameters given by OpenKE are used.
 ```
 python3 SS_Embedding_Calculation/run_OpenKEmodel.py
 ```
 
-For each protein dataset, this command creates **3 embedding files** (one for each GO semantic apect: biological_process, cellular_component aspect, molecular_function) and place them in [SS_Embedding_Calculation/Embeddings/datasetname/aspect](https://github.com/ritatsousa/Supervised-SS/tree/master/SS_Embedding_Calculation/Embeddings) folder.
-
-For each gene dataset, this command creates **4 embedding files** (4 semantic aspects: HPO, biological_process, cellular_component aspect, molecular_function) and place them in [SS_Embedding_Calculation/Embeddings/datasetname/aspect](https://github.com/ritatsousa/Supervised-SS/tree/master/SS_Embedding_Calculation/Embeddings) folder.
-
+For each dataset, this command creates **embedding files** (one for each semantic aspect) and place them in [SS_Embedding_Calculation/Embeddings/datasetname/aspect](https://github.com/ritatsousa/Supervised-SS/tree/master/SS_Embedding_Calculation/Embeddings) folder.
 The description of the embedding text file is in [SS_Embedding_Calculation/Embeddings/Embeddings_format.txt](https://github.com/ritatsousa/Supervised-SS/blob/master/SS_Embedding_Calculation/Embeddings/Embeddings_format.txt) file. The filename is in the format “Embeddings_datasetname_method_aspect.txt”. 
 
 
@@ -145,15 +127,12 @@ Jiaoyan Chen et al.
 Machine Learning, 110(7), 1813-1845
 ```
 
-#### Using Biomedical Benchmark Datasets
+In OWL2Vec*, as default, a set of sequences was generated from Weisfeiler-Lehman subtree kernels.
+For the Weisfeiler-Lehman algorithm, we also use as default walks with depth 8, and we extracted a limited number of 500 random walks for each entity. The corpora of sequences were used to build a Skip-Gram model with the following parameters: window size=5; number of iterations=10; entity vector size=200.
 
-In OWL2Vec*, a set of sequences was generated from Weisfeiler-Lehman subtree kernels.
-For the Weisfeiler-Lehman algorithm, we use walks with depth 8, and we extracted a limited number of 500 random walks for each entity. The corpora of sequences were used to build a Skip-Gram model with the following parameters: window size=5; number of iterations=10; entity vector size=200.
 
 ### 2B.4. Compute the Embedding Semantic Similarity for each pair
 
-
-#### Using Biomedical Benchmark Datasets
 After generating embeddings for each semantic aspect and then calculated the cosine similarity for each pair
 in datasets.
 Run the command for calculating embedding similarity for each semantic aspect:
@@ -172,8 +151,6 @@ python3 Regression/run_make_shuffle_partitions.py
 ```
 This command will create, for each dataset, **10 Partitions files** and place them in [Regression/Results/Datasetname](https://github.com/ritatsousa/Supervised-SS/tree/master/Regression/Results) folder. Each line of these files is an index (corresponding to a pair) of the dataset.
 
-
-#### Using Biomedical Benchmark Datasets
 With semantic similarities, run the command:
 ```
 python3 Regression/run_withPartitions.py
