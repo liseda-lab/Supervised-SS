@@ -2,30 +2,48 @@
 
 **SS**: Semantic Similarity; **SSM**: Semantic Similarity Measure; **GO**: Gene Ontology; **HPO**: Human Phenotype Ontology; **PPI**: Protein-Protein Interaction; **GP**: Genetic Programming; **LR**: Linear Regression; **XGB**: XGBoost; **RF**: Random Forest; **BR**: Bayesian Ridge; **DT**: Decision Tree; **MLP**: Multilayer Perceptron; **KNN**: K-Nearest Neighbor.
 
+
 ## Pre-requesites
 * install python 3.6.8;
 * install java JDK 11.0.4;
 * install python libraries by running the following command:  ```pip install -r req.txt```.
 
+
 ## The Toolkit
 
-Our toolkit needs a KG and a list of instance pairs with proxy similarity values and is able to: (1) identify the SAs that describe the KG entities (2) compute KG-based similarities according to different SAs and using different SSMs; (3) train supervised ML algorithms to learn a supervised semantic similarity according to the similarity proxy for which we want to tailor the similarity; (4) evaluate the supervised semantic similarity against a set of baselines.
+Our toolkit receives a KG and a list of instance pairs with proxy similarity values and is able to: (1) identify the SAs that describe the KG entities (2) compute KG-based similarities according to different SAs and using different SSMs; (3) train supervised ML algorithms to learn a supervised semantic similarity according to the similarity proxy for which we want to tailor the similarity; (4) evaluate the supervised semantic similarity against a set of baselines.
 This framework is independent of the SAs, the specific implementation of KG-based similarity and the ML algorithm employed in supervised learning.
 
 <img src="https://github.com/liseda-lab/Supervised-SS/blob/main/Framework.png"/>
 
 
 ## Datasets and Knowledge Graph
-In order for the program to work, provide a text file with the entity pairs and respective similarity proxy. 
-This tab-delimited text file must have 3 columns: 
-* 1st column - Ent1 Identifier;	 
-* 2nd column - Ent2 Identifier;
+The tookit receives a tab-delimited text file with 3 columns: 
+* 1st column - Entity 1 Identifier;	 
+* 2nd column - Entity 2 Identifier;
 * 3rd column - Proxy Similarity. 
+
+Regarding the KG, the toolkit takes as input an ontology file in OWL format and an instance annotation file in 2.0. or 2.1. GAF format or tsv format.
+GAF format (http://geneontology.org/docs/go-annotation-file-gaf-format-2.0/). GAFs are tab-delimited plain text files, where each line in the file represents a single association between a entity and a ontology term/class. 
+
+
+### Biomedical Benchmark Datasets
 
 This toolkit was successfully applied in a set of 21 protein and gene benchmark datasets (PPI-ALL1, PPI-ALL3, PPI-DM1, PPI-DM3, PPI-HS1, PPI-HS3, PPI-SC1, PPI-SC3, PPI-EC1, PPI-EC3, MF-ALL1, MF-ALL3, MF-DM1, MF-DM3, MF-HS1, MF-HS3, MF-SC1, MF-SC3, MF-EC1, MF-EC3, HPO-dataset) of different species for evaluation. The data is in [Data/kgsimDatasets](https://github.com/ritatsousa/Supervised-SS/tree/master/Data/kgsimDatasets) folder. 
 
+In the MF (also called PFAM) datasets, two proxies of protein similarity based on their biological properties were employed: sequence similarity and PFAM similarity.
+In PPI protein datasets, two similarity proxies were also employed: sequence similarity and protein-protein interactions. 
+For the HPO-dataset, the proxy similarity is based on phenotypic series.
+
 
 ## 1. Semantic Aspects Selection 
+
+As default, our toolkit uses subgraphs rooted in the classes at a distance of one from the KG root class or the subgraphs when the KGs have multiple roots as SAs. 
+However, SAs can also be manually defined by selecting the root classes that anchor the aspects.
+
+
+
+### Biomedical Benchmark Datasets
 
 
 
@@ -33,7 +51,7 @@ This toolkit was successfully applied in a set of 21 protein and gene benchmark 
 For taxonomic semantic similarity calculation, provide:
 * A dataset file with the previously described format;
 * A ontology file in OWL format;
-* A annotations file in 2.0. or 2.1. GAF format (http://geneontology.org/docs/go-annotation-file-gaf-format-2.0/). GAFs are tab-delimited plain text files, where each line in the file represents a single association between a entity and a ontology term/class. 
+* A annotations file in 2.0. or 2.1. 
 
 To support SS calculations, SML was employed. The software is available on GitHub (https://github.com/sharispe/slib/tree/dev/slib-sml) under a CeCILL License.
 ```
