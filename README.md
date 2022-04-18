@@ -16,7 +16,7 @@ Our toolkit receives a KG and a list of instance pairs with proxy similarity val
 <img src="https://github.com/liseda-lab/Supervised-SS/blob/main/Framework.png"/>
 
 This framework is independent of the SAs, the specific implementation of KG-based similarity, and the ML algorithm employed in supervised learning.
-The input files, the SAs, the SSMs, and the algorithms to be used must be defined in the [config.py](https://github.com/liseda-lab/Supervised-SS/blob/main/config.py) config.py file.
+The input files, the SAs, the SSMs, and the algorithms to be used must be defined in the [config.py](https://github.com/liseda-lab/Supervised-SS/blob/main/config.py) file.
 
 
 ## Datasets and Knowledge Graph
@@ -31,7 +31,7 @@ GAF format (http://geneontology.org/docs/go-annotation-file-gaf-format-2.0/). GA
 
 ### Biomedical Benchmark Datasets
 
-This toolkit was successfully applied in a set of 21 protein and gene benchmark datasets (PPI-ALL1, PPI-ALL3, PPI-DM1, PPI-DM3, PPI-HS1, PPI-HS3, PPI-SC1, PPI-SC3, PPI-EC1, PPI-EC3, MF-ALL1, MF-ALL3, MF-DM1, MF-DM3, MF-HS1, MF-HS3, MF-SC1, MF-SC3, MF-EC1, MF-EC3, HPO-dataset) of different species for evaluation. The data is in [Data/kgsimDatasets](https://github.com/ritatsousa/Supervised-SS/tree/master/Data/kgsimDatasets) folder. 
+This toolkit was successfully applied in a set of 21 protein and gene benchmark datasets (PPI-ALL1, PPI-ALL3, PPI-DM1, PPI-DM3, PPI-HS1, PPI-HS3, PPI-SC1, PPI-SC3, PPI-EC1, PPI-EC3, MF-ALL1, MF-ALL3, MF-DM1, MF-DM3, MF-HS1, MF-HS3, MF-SC1, MF-SC3, MF-EC1, MF-EC3, HPO-dataset) of different species for evaluation. The data is in [Data/kgsimDatasets](https://github.com/liseda-lab/Supervised-SS/blob/main/Data/kgsimDatasets) folder. 
 
 In the MF (also called PFAM) datasets, two proxies of protein similarity based on their biological properties were employed: sequence similarity and PFAM similarity.
 Two similarity proxies were also employed in PPI protein datasets: sequence similarity and protein-protein interactions. 
@@ -71,9 +71,9 @@ java -cp ".:./SS_Calculation/jar_files/*" SS_Calculation/Run_SS_calculation
 
 **NOTE**: To run in Windows, replace ".:." per ".;.".
 
-This command will create, for each dataset, **SS files** (one for each SSM) with the SS between each pair of entities for each semantic aspect using six different SSMs (ResnikMax_ICSeco, ResnikMax_ICResnik, ResnikBMA_ICSeco, ResnikBMA_ICResnik, simGIC_ICSeco, simGIC_ICResnik). The description of this text file is in [SS_Calculation/SS_files/SS_file format_GO.txt](https://github.com/ritatsousa/Supervised-SS/blob/master/SS_Calculation/SS_files/SS_file_format_GO.txt) file. 
+This command will create, for each dataset, **SS files** (one for each SSM) with the SS between each pair of entities for each semantic aspect using six different SSMs (ResnikMax_ICSeco, ResnikMax_ICResnik, ResnikBMA_ICSeco, ResnikBMA_ICResnik, simGIC_ICSeco, simGIC_ICResnik). The description of this text file is in [SS_Calculation/SS_files/SS_file format_GO.txt](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/SS_files/SS_file_format_GO.txt) file. 
 
-The new SS files are placed in [SS_Calculation/SS_files/datasetname](https://github.com/ritatsousa/Supervised-SS/tree/master/SS_Calculation/SS_files) folder.
+The new SS files are placed in [SS_Calculation/SS_files/datasetname](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/SS_files) folder.
 
 
 
@@ -96,8 +96,8 @@ Run the command to calculate the embeddings for each protein using rdf2vec imple
 ```
 python3 SS_Embedding_Calculation/run_RDF2VecEmbeddings.py
 ```
-For each dataset, this command creates **embedding files** (one for each semantic aspect) and place them in [SS_Embedding_Calculation/Embeddings/datasetname/aspect](https://github.com/ritatsousa/Supervised-SS/tree/master/SS_Embedding_Calculation/Embeddings) folder.
-The description of the embedding text file is in [SS_Embedding_Calculation/Embeddings/Embeddings_format.txt](https://github.com/ritatsousa/Supervised-SS/blob/master/SS_Embedding_Calculation/Embeddings/Embeddings_format.txt) file. The filename is in the format “Embeddings_datasetname_skig-gram_wl_aspect.txt”. 
+For each dataset, this command creates **embedding files** (one for each semantic aspect) and place them in [SS_Embedding_Calculation/Embeddings/datasetname/aspect](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Embedding_Calculation/Embeddings) folder.
+The description of the embedding text file is in [SS_Embedding_Calculation/Embeddings/Embeddings_format.txt](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Embedding_Calculation/Embeddings/Embeddings_format.txt) file. The filename is in the format “Embeddings_datasetname_skig-gram_wl_aspect.txt”. 
 
 
 ### 2B.2. OpenKE Embeddings Computation
@@ -115,8 +115,8 @@ The default parameters given by OpenKE are used.
 python3 SS_Embedding_Calculation/run_OpenKEmodel.py
 ```
 
-For each dataset, this command creates **embedding files** (one for each semantic aspect) and place them in [SS_Embedding_Calculation/Embeddings/datasetname/aspect](https://github.com/ritatsousa/Supervised-SS/tree/master/SS_Embedding_Calculation/Embeddings) folder.
-The description of the embedding text file is in [SS_Embedding_Calculation/Embeddings/Embeddings_format.txt](https://github.com/ritatsousa/Supervised-SS/blob/master/SS_Embedding_Calculation/Embeddings/Embeddings_format.txt) file. The filename is in the format “Embeddings_datasetname_method_aspect.txt”. 
+For each dataset, this command creates **embedding files** (one for each semantic aspect) and place them in [SS_Embedding_Calculation/Embeddings/datasetname/aspect](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Embedding_Calculation/Embeddings) folder.
+The description of the embedding text file is in [SS_Embedding_Calculation/Embeddings/Embeddings_format.txt](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Embedding_Calculation/Embeddings/Embeddings_format.txt) file. The filename is in the format “Embeddings_datasetname_method_aspect.txt”. 
 
 
 
@@ -141,7 +141,7 @@ Run the command for calculating embedding similarity for each semantic aspect:
 ```
 python3 SS_Embedding_Calculation/run_embedSS_calculation.py
 ```
-For each dataset, this command creates **1 embedding similarity file** and places it in [SS_Embedding_Calculation/Embeddings_SS_files](https://github.com/ritatsousa/Supervised-SS/tree/master/SS_Embedding_Calculation/Embeddings_SS_files) folder.
+For each dataset, this command creates **1 embedding similarity file** and places it in [SS_Embedding_Calculation/Embeddings_SS_files]https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Embedding_Calculation/Embeddings_SS_files) folder.
 The filename is in the format "embedss_200_model_datasetname.txt". 
 The format of each line of embedding similarity file is "Ent1  Ent2	ES_SA1	ES_SA2	ES_SA3	ES_SA4"; 
 
@@ -189,7 +189,7 @@ For 10-cross-validation purposes, run the command to split each dataset into ten
 ```
 python3 Regression/run_make_shuffle_partitions.py
 ```
-This command will create, for each dataset, **10 Partitions files** and place them in [Regression/Results/Datasetname](https://github.com/ritatsousa/Supervised-SS/tree/master/Regression/Results) folder. Each line of these files is an index (corresponding to a pair) of the dataset.
+This command will create, for each dataset, **10 Partitions files** and place them in [Regression/Results/Datasetname](https://github.com/liseda-lab/Supervised-SS/blob/main/Regression/Results) folder. Each line of these files is an index (corresponding to a pair) of the dataset.
 
 With semantic similarities, run the command:
 ```
