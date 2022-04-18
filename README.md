@@ -46,6 +46,10 @@ In addition to the three GO aspects, the similarity is also calculated for the H
 By default, our toolkit uses subgraphs rooted in the classes at a distance of one from the KG root class or the subgraphs when the KGs have multiple roots as SAs. 
 However, SAs can also be manually defined by selecting the root classes that anchor the aspects.
 
+If the SAs are not given manually, run the command:
+```
+python3 SA_Selection/run_SAs_selection.py
+```
 
 ## 2A. Taxonomic Semantic Similarity Computation
 For taxonomic semantic similarity calculation, provide:
