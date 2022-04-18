@@ -11,8 +11,8 @@
 
 ## The Toolkit
 
-Our toolkit receives a KG and a list of instance pairs with proxy similarity values and is able to: (1) identify the SAs that describe the KG entities (2) compute KG-based similarities according to different SAs and using different SSMs; (3) train supervised ML algorithms to learn a supervised semantic similarity according to the similarity proxy for which we want to tailor the similarity; (4) evaluate the supervised semantic similarity against a set of baselines.
-This framework is independent of the SAs, the specific implementation of KG-based similarity and the ML algorithm employed in supervised learning.
+Our toolkit receives a KG and a list of instance pairs with proxy similarity values and can: (1) identify the SAs that describe the KG entities (2) compute KG-based similarities according to different SAs and using different SSMs; (3) train supervised ML algorithms to learn a supervised semantic similarity according to the similarity proxy for which we want to tailor the similarity; (4) evaluate the supervised semantic similarity against a set of baselines.
+This framework is independent of the SAs, the specific implementation of KG-based similarity, and the ML algorithm employed in supervised learning.
 
 <img src="https://github.com/liseda-lab/Supervised-SS/blob/main/Framework.png"/>
 
@@ -23,7 +23,7 @@ The tookit receives a tab-delimited text file with 3 columns:
 * 2nd column - Entity 2 Identifier;
 * 3rd column - Proxy Similarity. 
 
-Regarding the KG, the toolkit takes as input an ontology file in OWL format and an instance annotation file in 2.0. or 2.1. GAF format or tsv format.
+Regarding the KG, the toolkit takes as input an ontology file in OWL format and an instance annotation file in 2.0. GAF format or tsv format.
 GAF format (http://geneontology.org/docs/go-annotation-file-gaf-format-2.0/). GAFs are tab-delimited plain text files, where each line in the file represents a single association between a entity and a ontology term/class. 
 
 
@@ -32,16 +32,16 @@ GAF format (http://geneontology.org/docs/go-annotation-file-gaf-format-2.0/). GA
 This toolkit was successfully applied in a set of 21 protein and gene benchmark datasets (PPI-ALL1, PPI-ALL3, PPI-DM1, PPI-DM3, PPI-HS1, PPI-HS3, PPI-SC1, PPI-SC3, PPI-EC1, PPI-EC3, MF-ALL1, MF-ALL3, MF-DM1, MF-DM3, MF-HS1, MF-HS3, MF-SC1, MF-SC3, MF-EC1, MF-EC3, HPO-dataset) of different species for evaluation. The data is in [Data/kgsimDatasets](https://github.com/ritatsousa/Supervised-SS/tree/master/Data/kgsimDatasets) folder. 
 
 In the MF (also called PFAM) datasets, two proxies of protein similarity based on their biological properties were employed: sequence similarity and PFAM similarity.
-In PPI protein datasets, two similarity proxies were also employed: sequence similarity and protein-protein interactions. 
+Two similarity proxies were also employed in PPI protein datasets: sequence similarity and protein-protein interactions. 
 For the HPO-dataset, the proxy similarity is based on phenotypic series.
 
-Regarding the semantic aspects, for the protein datasets, we consider the GO aspects as semantic aspects.
-For the gene dataset, in addition to the three GO aspects, the similarity is also calculated for the HP phenotypic abnormality subgraph. Therefore, instead of three semantic aspects, we consider four semantic aspects.
+Regarding the semantic aspects, we consider the GO aspects as semantic aspects for the protein datasets.
+In addition to the three GO aspects, the similarity is also calculated for the HP phenotypic abnormality subgraph for the gene dataset. Therefore, instead of three semantic aspects, we consider four semantic aspects.
 
 
 ## 1. Semantic Aspects Selection 
 
-As default, our toolkit uses subgraphs rooted in the classes at a distance of one from the KG root class or the subgraphs when the KGs have multiple roots as SAs. 
+By default, our toolkit uses subgraphs rooted in the classes at a distance of one from the KG root class or the subgraphs when the KGs have multiple roots as SAs. 
 However, SAs can also be manually defined by selecting the root classes that anchor the aspects.
 
 
