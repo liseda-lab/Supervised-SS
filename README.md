@@ -72,8 +72,7 @@ The new SS file is placed in [SS_Calculation/SS_files/datasetname](https://githu
 For a embedding-based SSM, this command creates a **embedding SS file** and places it in [SS_Embedding_Calculation/Embeddings_SS_files]https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Embedding_Calculation/Embeddings_SS_files) folder.
 The filename is in the format "embedss_200_model_datasetname.txt". 
 The format of each line of embedding similarity file is "Ent1  Ent2	ES_SA1	ES_SA2	ES_SA3	ES_SA4"; 
-
-In case the semantic similarity measure is based on embeddings, in addition to the SS file, it creates **embedding files** (one for each semantic aspect) and place them in [SS_Embedding_Calculation/Embeddings/datasetname/aspect](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Embedding_Calculation/Embeddings) folder.
+In addition to the SS file, it creates **embedding files** (one for each semantic aspect) and place them in [SS_Embedding_Calculation/Embeddings/datasetname/aspect](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Embedding_Calculation/Embeddings) folder.
 The description of the embedding text file is in [SS_Embedding_Calculation/Embeddings/Embeddings_format.txt](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Embedding_Calculation/Embeddings/Embeddings_format.txt) file. The filename is in the format “Embeddings_datasetname_method_aspect.txt”.
 
 
