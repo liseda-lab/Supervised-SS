@@ -30,7 +30,8 @@ For more details, go to https://www.semantic-measures-library.org/sml/index.php?
 :param path_results: results path
 :param algorithm: name of the algorithm (options:"GP", "LR", "XGB", "RF", "DT", "KNN", "BR", "MLP")
 :param baselines: boolean. True for running the baselines and False otherwise. The default value is False
-:param
+:param sa: str (options:"roots", "subroots", "manual")
+:param list_sa: list of urls that is required if sa="manual"
 """
 
 DATASET_NAME = "PPI_EC3"
@@ -58,3 +59,4 @@ ALGORITHM = "LR"
 BASELINES = True
 
 SA = "roots"
+LIST_SA = ["http://purl.obolibrary.org/obo/GO_0008150", "http://purl.obolibrary.org/obo/GO_0005575", "http://purl.obolibrary.org/obo/GO_0003674"]
