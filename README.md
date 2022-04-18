@@ -66,18 +66,15 @@ Bioinformatics 2014 30(5): 740-742. doi: 10.1093/bioinformatics/btt581
 
 In Linux, compile the command:
 ```
-javac -cp ".:./SS_Calculation/jar_files/*" ./SS_Calculation/Run_SS_calculation.java
+python3 SS_Calculation/Run_SS_calculation.py
 ```
-and then run
+To run in Windows
 ```
-java -cp ".:./SS_Calculation/jar_files/*" SS_Calculation/Run_SS_calculation
+python3 SS_Calculation/Run_SS_calculation.py windows
 ```
 
-**NOTE**: To run in Windows, replace ".:." per ".;.".
-
-This command will create, for each dataset, **SS files** (one for each SSM) with the SS between each pair of entities for each semantic aspect using six different SSMs (ResnikMax_ICSeco, ResnikMax_ICResnik, ResnikBMA_ICSeco, ResnikBMA_ICResnik, simGIC_ICSeco, simGIC_ICResnik). The description of this text file is in [SS_Calculation/SS_files/SS_file format_GO.txt](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/SS_files/SS_file_format_GO.txt) file. 
-
-The new SS files are placed in [SS_Calculation/SS_files/datasetname](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/SS_files) folder.
+This command will create, a **SS file** with the SS between each pair of entities for each semantic aspect using the defined SSM. The description of this text file is in [SS_Calculation/SS_files/SS_file format_GO.txt](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/SS_files/SS_file_format_GO.txt) file. 
+The new SS file is placed in [SS_Calculation/SS_files/datasetname](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/SS_files) folder.
 
 
 
