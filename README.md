@@ -51,18 +51,11 @@ If the SAs are not given manually, run the command:
 python3 SA_Selection/run_SAs_selection.py
 ```
 
-## 2A. Taxonomic Semantic Similarity Computation
-For taxonomic semantic similarity calculation, provide:
+## 2. Taxonomic Semantic Similarity Computation
+For semantic similarity calculation, provide:
 * A dataset file with the previously described format;
 * A ontology file in OWL format;
 * A annotations file in 2.0. or 2.1. 
-
-To support SS calculations, SML was employed. The software is available on GitHub (https://github.com/sharispe/slib/tree/dev/slib-sml) under a CeCILL License.
-```
-The Semantic Measures Library and Toolkit: fast computation of semantic similarity and relatedness using biomedical ontologies
-Sébastien Harispe*, Sylvie Ranwez, Stefan Janaqi and Jacky Montmain
-Bioinformatics 2014 30(5): 740-742. doi: 10.1093/bioinformatics/btt581
-```
 
 In Linux, compile the command:
 ```
@@ -73,15 +66,26 @@ To run in Windows
 python3 SS_Calculation/Run_SS_calculation.py windows
 ```
 
-This command will create, a **SS file** with the SS between each pair of entities for each semantic aspect using the defined SSM. The description of this text file is in [SS_Calculation/SS_files/SS_file format_GO.txt](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/SS_files/SS_file_format_GO.txt) file. 
+For a taxonomic SSM this command will create, a **SS file** with the SS between each pair of entities for each semantic aspect using the defined SSM. The description of this text file is in [SS_Calculation/SS_files/SS_file format_GO.txt](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/SS_files/SS_file_format_GO.txt) file. 
 The new SS file is placed in [SS_Calculation/SS_files/datasetname](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/SS_files) folder.
 
+For a embedding-based SSM, this command creates a **embedding SS file** and places it in [SS_Embedding_Calculation/Embeddings_SS_files]https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Embedding_Calculation/Embeddings_SS_files) folder.
+The filename is in the format "embedss_200_model_datasetname.txt". 
+The format of each line of embedding similarity file is "Ent1  Ent2	ES_SA1	ES_SA2	ES_SA3	ES_SA4"; 
+
+In case the semantic similarity measure is based on embeddings, in addition to the SS file, it creates **embedding files** (one for each semantic aspect) and place them in [SS_Embedding_Calculation/Embeddings/datasetname/aspect](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Embedding_Calculation/Embeddings) folder.
+The description of the embedding text file is in [SS_Embedding_Calculation/Embeddings/Embeddings_format.txt](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Embedding_Calculation/Embeddings/Embeddings_format.txt) file. The filename is in the format “Embeddings_datasetname_method_aspect.txt”.
 
 
-## 2B. Embedding Semantic Similarity Computation
+### 2.1. Taxonomic Semantic Similarity
+To support SS calculations, SML was employed. The software is available on GitHub (https://github.com/sharispe/slib/tree/dev/slib-sml) under a CeCILL License.
+```
+The Semantic Measures Library and Toolkit: fast computation of semantic similarity and relatedness using biomedical ontologies
+Sébastien Harispe*, Sylvie Ranwez, Stefan Janaqi and Jacky Montmain
+Bioinformatics 2014 30(5): 740-742. doi: 10.1093/bioinformatics/btt581
+```
 
-
-### 2B.1. RDF2Vec Embeddings Computation
+### 2.2. RDF2Vec Embeddings Semantic Similariy
 To calculate RDF2Vec embeddings, an RDF2Vec python implementation was used. The implementation is available on GitHub https://github.com/IBCNServices/pyRDF2Vec.
 ```
 RDF2Vec: RDF graph embeddings for data mining
@@ -93,15 +97,8 @@ As default, in RDF2Vec, a set of sequences was generated from Weisfeiler-Lehman 
 For the Weisfeiler-Lehman algorithm, we use as default walks with depth 8, and we extracted a limited number of 500 random walks for each entity. The corpora of sequences were used to build a Skip-Gram model with the following default parameters: window size=5; number of iterations=10; entity vector size=200.
 However, all the parameters can be changed in the beginning of the python file [SS_Embedding_Calculation/run_RDF2VecEmbeddings.py].
 
-Run the command to calculate the embeddings for each protein using rdf2vec implementation:
-```
-python3 SS_Embedding_Calculation/run_RDF2VecEmbeddings.py
-```
-For each dataset, this command creates **embedding files** (one for each semantic aspect) and place them in [SS_Embedding_Calculation/Embeddings/datasetname/aspect](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Embedding_Calculation/Embeddings) folder.
-The description of the embedding text file is in [SS_Embedding_Calculation/Embeddings/Embeddings_format.txt](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Embedding_Calculation/Embeddings/Embeddings_format.txt) file. The filename is in the format “Embeddings_datasetname_skig-gram_wl_aspect.txt”. 
 
-
-### 2B.2. OpenKE Embeddings Computation
+### 2.3. OpenKE Embeddings Semantic Similarity
 To compute embeddings using popular graph embeddings methods, OpenKE was used. OpenKE is an open-source framework for knowledge embedding organized by THUNLP based on the TensorFlow toolkit. OpenKE provides fast and stable toolkits, including the most popular knowledge representation learning (KRL) methods. More information is available on their website (http://openke.thunlp.org/). The software is available on GitHub (https://github.com/thunlp/OpenKE/tree/OpenKE-Tensorflow1.0) under a MIT License.
 ```
 OpenKE: An Open Toolkit for Knowledge Embedding
@@ -112,16 +109,9 @@ Proceedings of EMNLP, 2018 (pp. 139-144)
 **NOTE**: OpenKE is only implemented for Linux system.
 
 The default parameters given by OpenKE are used.
-```
-python3 SS_Embedding_Calculation/run_OpenKEmodel.py
-```
-
-For each dataset, this command creates **embedding files** (one for each semantic aspect) and place them in [SS_Embedding_Calculation/Embeddings/datasetname/aspect](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Embedding_Calculation/Embeddings) folder.
-The description of the embedding text file is in [SS_Embedding_Calculation/Embeddings/Embeddings_format.txt](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Embedding_Calculation/Embeddings/Embeddings_format.txt) file. The filename is in the format “Embeddings_datasetname_method_aspect.txt”. 
 
 
-
-### 2B.3. OWL2Vec* Embeddings Computation
+### 2.4. OWL2Vec* Embeddings Computation
 
 To calculate OWL2Vec* embeddings, it was used the implementation available on GitHub https://github.com/KRR-Oxford/OWL2Vec-Star.
 ```
@@ -132,19 +122,6 @@ Machine Learning, 110(7), 1813-1845
 
 In OWL2Vec*, as default, a set of sequences was generated from Weisfeiler-Lehman subtree kernels.
 For the Weisfeiler-Lehman algorithm, we also use as default walks with depth 8, and we extracted a limited number of 500 random walks for each entity. The corpora of sequences were used to build a Skip-Gram model with the following parameters: window size=5; number of iterations=10; entity vector size=200.
-
-
-### 2B.4. Compute the Embedding Semantic Similarity for each pair
-
-After generating embeddings for each semantic aspect and then calculated the cosine similarity for each pair
-in datasets.
-Run the command for calculating embedding similarity for each semantic aspect:
-```
-python3 SS_Embedding_Calculation/run_embedSS_calculation.py
-```
-For each dataset, this command creates **1 embedding similarity file** and places it in [SS_Embedding_Calculation/Embeddings_SS_files]https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Embedding_Calculation/Embeddings_SS_files) folder.
-The filename is in the format "embedss_200_model_datasetname.txt". 
-The format of each line of embedding similarity file is "Ent1  Ent2	ES_SA1	ES_SA2	ES_SA3	ES_SA4"; 
 
 
 ## 3. Supervised Similarity Learning
