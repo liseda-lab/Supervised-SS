@@ -63,13 +63,10 @@ python3 SS_Calculation/Run_SS_calculation_SAs.py
 ```
 
 For a taxonomic SSM this command will create, a **SS file** with the SS between each pair of entities for each semantic aspect using the defined SSM. The description of this text file is in [SS_Calculation/SS_files/SS_file format_GO.txt](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/SS_files/SS_file_format_GO.txt) file. 
-The new SS file is placed in [SS_Calculation/SS_files/datasetname](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/SS_files) folder.
 
-For a embedding-based SSM, this command creates a **embedding SS file** and places it in [SS_Embedding_Calculation/Embeddings_SS_files]https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Embedding_Calculation/Embeddings_SS_files) folder.
-The filename is in the format "embedss_200_model_datasetname.txt". 
-The format of each line of embedding similarity file is "Ent1  Ent2	ES_SA1	ES_SA2	ES_SA3	ES_SA4"; 
-In addition to the SS file, it creates **embedding files** (one for each semantic aspect) and place them in [SS_Embedding_Calculation/Embeddings/datasetname/aspect](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Embedding_Calculation/Embeddings) folder.
-The description of the embedding text file is in [SS_Embedding_Calculation/Embeddings/Embeddings_format.txt](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Embedding_Calculation/Embeddings/Embeddings_format.txt) file. The filename is in the format “Embeddings_datasetname_method_aspect.txt”.
+For a embedding-based SSM, this command creates a **embedding SS file** and places it in [SS_Calculation/Embeddings_SS_files](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/Embeddings_SS_files) folder. The description of this text file is in [SS_Calculation/Embeddings_SS_files/SS_file format_GO.txt](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/Embeddings_SS_files/SS_file_format_GO.txt) file. 
+In addition to the SS file, it creates **embedding files** (one for each semantic aspect) and place them in [SS_Calculation/Embeddings/datasetname/aspect](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/Embeddings) folder.
+The description of the embedding text file is in [SS_Calculation/Embeddings/Embeddings_format.txt](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/Embeddings/Embeddings_format.txt) file.
 
 
 ### 2.1. Taxonomic Semantic Similarity
@@ -90,7 +87,7 @@ International Semantic Web Conference, Springer, Cham, 2016 (pp. 498-514)
 
 As default, in RDF2Vec, a set of sequences was generated from Weisfeiler-Lehman subtree kernels.
 For the Weisfeiler-Lehman algorithm, we use as default walks with depth 8, and we extracted a limited number of 500 random walks for each entity. The corpora of sequences were used to build a Skip-Gram model with the following default parameters: window size=5; number of iterations=10; entity vector size=200.
-However, all the parameters can be changed in the beginning of the python file [SS_Embedding_Calculation/run_RDF2VecEmbeddings.py].
+However, all the parameters can be changed in the beginning of the python file [SS_Calculation/run_RDF2VecEmbeddings.py].
 
 
 ### 2.3. OpenKE Embeddings Semantic Similarity
