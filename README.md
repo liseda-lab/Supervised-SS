@@ -78,7 +78,7 @@ Bioinformatics 2014 30(5): 740-742. doi: 10.1093/bioinformatics/btt581
 ```
 
 ### 2.2. RDF2Vec Embeddings Semantic Similariy
-To calculate RDF2Vec embeddings, an [RDF2Vec python implementation](https://github.com/IBCNServices/pyRDF2Vec) was used. The implementation is available on .
+To calculate RDF2Vec embeddings, an [RDF2Vec python implementation](https://github.com/IBCNServices/pyRDF2Vec) was used.
 ```
 RDF2Vec: RDF graph embeddings for data mining
 Petara Ristoski and Heiko Paulheim
@@ -87,11 +87,11 @@ International Semantic Web Conference, Springer, Cham, 2016 (pp. 498-514)
 
 As default, in RDF2Vec, a set of sequences was generated from Weisfeiler-Lehman subtree kernels.
 For the Weisfeiler-Lehman algorithm, we use as default walks with depth 8, and we extracted a limited number of 500 random walks for each entity. The corpora of sequences were used to build a Skip-Gram model with the following default parameters: window size=5; number of iterations=10; entity vector size=200.
-However, all the parameters can be changed in the beginning of the python file [SS_Calculation/run_RDF2VecEmbeddings.py].
+However, all the parameters can be changed in the beginning of the python file [SS_Calculation/run_RDF2VecEmbeddings.py](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/run_RDF2VecEmbeddings.py).
 
 
 ### 2.3. OpenKE Embeddings Semantic Similarity
-To compute embeddings using popular graph embeddings methods, OpenKE was used. OpenKE is an open-source framework for knowledge embedding organized by THUNLP based on the TensorFlow toolkit. OpenKE provides fast and stable toolkits, including the most popular knowledge representation learning (KRL) methods. More information is available on their website (http://openke.thunlp.org/). The software is available on GitHub (https://github.com/thunlp/OpenKE/tree/OpenKE-Tensorflow1.0) under a MIT License.
+To compute embeddings using popular graph embeddings methods, OpenKE was used. OpenKE is an open-source framework for knowledge embedding organized by THUNLP based on the TensorFlow toolkit. OpenKE provides fast and stable toolkits, including the most popular knowledge representation learning (KRL) methods. More information is available on their [website](http://openke.thunlp.org/). The software is available on [GitHub](https://github.com/thunlp/OpenKE/tree/OpenKE-Tensorflow1.0) under a MIT License.
 ```
 OpenKE: An Open Toolkit for Knowledge Embedding
 Xu Han and Shulin Cao and Xin Lv and Yankai Lin and Zhiyuan Liu and Maosong Sun and Juanzi Li
@@ -100,12 +100,12 @@ Proceedings of EMNLP, 2018 (pp. 139-144)
 
 **NOTE**: OpenKE is only implemented for Linux system.
 
-The default parameters given by OpenKE are used.
+The default parameters given by OpenKE are used, but they can be changed in the beginning of the python file [SS_Calculation/run_OpenKEmodel.py](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/run_OpenKEmodel.py).
 
 
 ### 2.4. OWL2Vec* Embeddings Computation
 
-To calculate OWL2Vec* embeddings, it was used the implementation available on GitHub https://github.com/KRR-Oxford/OWL2Vec-Star.
+To calculate OWL2Vec* embeddings, it was used the implementation available on [GitHub](https://github.com/KRR-Oxford/OWL2Vec-Star).
 ```
 OWL2vec*: Embedding of owl ontologies
 Jiaoyan Chen et al.
@@ -114,15 +114,14 @@ Machine Learning, 110(7), 1813-1845
 
 In OWL2Vec*, as default, a set of sequences was generated from Weisfeiler-Lehman subtree kernels.
 For the Weisfeiler-Lehman algorithm, we also use as default walks with depth 8, and we extracted a limited number of 500 random walks for each entity. The corpora of sequences were used to build a Skip-Gram model with the following parameters: window size=5; number of iterations=10; entity vector size=200.
+However, all the parameters can be changed in the beginning of the python file [SS_Calculation/run_OWL2VecEmbeddings.py](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/run_OWL2VecEmbeddings.py).
 
 
 ## 3. Supervised Similarity Learning
 
 To train a supervised semantic similarity according to the similarity proxy, eight representative ML algorithms for regression can be employed: LR, BR, KNN, GP, DT, MLP, RF, XGB. 
-
 Except for GP, XGB and RF, the default parameters are the default scikit-learn values. 
-
-For running GP, we use gplearn 3.0 (https://gplearn.readthedocs.io/en/stable/), a freely available package that runs with the scikit-learn library with the parameters:
+For running GP, we use [gplearn 3.0](https://gplearn.readthedocs.io/en/stable/), a freely available package that runs with the scikit-learn library with the parameters:
 
 Parameter | Value
 ------------- | -------------
@@ -140,7 +139,7 @@ Probability of hoist mutation on a tournament winner | 0.01
 Probability of point mutation on a tournament winner | 0.01
 Probability of any given node will be mutated, for point mutation | 0.05
 
-For XGB, we use the XGBoost 1.1.1 package (https://xgboost.readthedocs.io), with the values of some parameters altered to maximize the performance of the model, through grid search. 
+For XGB, we use the [XGBoost 1.1.1 package](https://xgboost.readthedocs.io), with the values of some parameters altered to maximize the performance of the model, through grid search. 
 
 Parameter | Value
 ------------- | -------------
@@ -165,7 +164,6 @@ With semantic similarities, run the command:
 ```
 python3 Regression/run_withPartitions.py
 ```
-
 
 
 ## 4. Supervised Similarity Evaluation 
