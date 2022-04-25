@@ -1,4 +1,5 @@
 import os
+import sys
 import rdflib
 from rdflib.namespace import RDF, OWL, RDFS
 
@@ -6,6 +7,8 @@ import run_embedSS_calculation
 import run_OWL2VecEmbeddings
 import run_RDF2VecEmbeddings
 import run_OpenKEmodel
+
+sys.path.append(os.getcwd()) #add the env path
 from config import OS, DATASET_NAME, SPECIES, PROXY, ONTOLOGY, ONTOLOGY_ANNOTATIONS, ONTOLOGY_ANNOTATIONS_FORMAT, NAMESPACE, NAMESPACE_URI, DATASET_FILE, PATH_SS_FILE, SS_MEASURE, PATH_EMBEDDING, PATH_SA_FILE
 
 def ensure_dir(path):
