@@ -51,7 +51,7 @@ python3 run_all_cmds.py
 ```
 
 
-## 1. Semantic Aspects Selection 
+## (1) Semantic Aspects Selection 
 
 By default, our toolkit uses subgraphs rooted in the classes at a distance of one from the KG root class or the subgraphs when the KGs have multiple roots as SAs. 
 However, SAs can also be manually defined by selecting the root classes that anchor the aspects.
@@ -61,7 +61,7 @@ If the SAs are not given manually, run the command:
 python3 SA_Selection/run_SAs_selection.py
 ```
 
-## 2. Taxonomic Semantic Similarity Computation
+## (2) Taxonomic Semantic Similarity Computation
 For semantic similarity calculation, provide:
 * A dataset file with the previously described format;
 * A ontology file in OWL format;
@@ -79,7 +79,7 @@ In addition to the SS file, it creates **embedding files** (one for each semanti
 The description of the embedding text file is [here](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/Embeddings/Embeddings_format.txt).
 
 
-### 2.1. Taxonomic Semantic Similarity
+### (2.1) Taxonomic Semantic Similarity
 To support SS calculations, SML was employed. The software is available on [GitHub](https://github.com/sharispe/slib/tree/dev/slib-sml) under a CeCILL License.
 ```
 The Semantic Measures Library and Toolkit: fast computation of semantic similarity and relatedness using biomedical ontologies
@@ -87,7 +87,7 @@ Sébastien Harispe*, Sylvie Ranwez, Stefan Janaqi and Jacky Montmain
 Bioinformatics 2014 30(5): 740-742. doi: 10.1093/bioinformatics/btt581
 ```
 
-### 2.2. RDF2Vec Embeddings Semantic Similarity
+### (2.2) RDF2Vec Embeddings Semantic Similarity
 To calculate RDF2Vec embeddings, an [RDF2Vec python implementation](https://github.com/IBCNServices/pyRDF2Vec) was used.
 ```
 RDF2Vec: RDF graph embeddings for data mining
@@ -100,7 +100,7 @@ For the Weisfeiler-Lehman algorithm, we use as default walks with depth 8, and w
 However, all the parameters can be changed in the beginning of the [python file](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/run_RDF2VecEmbeddings.py).
 
 
-### 2.3. OWL2Vec* Embeddings Semantic Similarity
+### (2.3) OWL2Vec* Embeddings Semantic Similarity
 
 To calculate OWL2Vec* embeddings, it was used the implementation available on [GitHub](https://github.com/KRR-Oxford/OWL2Vec-Star).
 ```
@@ -114,7 +114,7 @@ For the Weisfeiler-Lehman algorithm, we also use as default walks with depth 8, 
 However, all the parameters can be changed in the beginning of the [python file](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/run_OWL2VecEmbeddings.py).
 
 
-### 2.4. OpenKE Embeddings Semantic Similarity
+### (2.4) OpenKE Embeddings Semantic Similarity
 To compute embeddings using popular graph embeddings methods, OpenKE was used. OpenKE is an open-source framework for knowledge embedding organized by THUNLP based on the TensorFlow toolkit. OpenKE provides fast and stable toolkits, including the most popular knowledge representation learning (KRL) methods. More information is available on their [website](http://openke.thunlp.org/). The software is available on [GitHub](https://github.com/thunlp/OpenKE/tree/OpenKE-Tensorflow1.0) under a MIT License.
 ```
 OpenKE: An Open Toolkit for Knowledge Embedding
@@ -127,7 +127,7 @@ Proceedings of EMNLP, 2018 (pp. 139-144)
 The default parameters given by OpenKE are used.
 
 
-## 3. Supervised Similarity Learning
+## (3) Supervised Similarity Learning
 
 To train a supervised semantic similarity according to the similarity proxy, eight representative ML algorithms for regression can be employed: LR, BR, KNN, GP, DT, MLP, RF, XGB. 
 Except for GP, XGB and RF, the default parameters are the default scikit-learn values. 
@@ -176,7 +176,7 @@ python3 Regression/run_withPartitions.py
 ```
 
 
-## 4. Supervised Similarity Evaluation 
+## (4) Supervised Similarity Evaluation 
 
 We compute the static similarity for each semantic aspect and use, as baselines, the single aspect similarities and two well-known strategies for combining the single aspect scores, the average and maximum.
 
