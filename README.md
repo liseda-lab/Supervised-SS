@@ -70,7 +70,7 @@ The description of the embedding text file is in [SS_Calculation/Embeddings/Embe
 
 
 ### 2.1. Taxonomic Semantic Similarity
-To support SS calculations, SML was employed. The software is available on GitHub (https://github.com/sharispe/slib/tree/dev/slib-sml) under a CeCILL License.
+To support SS calculations, SML was employed. The software is available on [GitHub](https://github.com/sharispe/slib/tree/dev/slib-sml) under a CeCILL License.
 ```
 The Semantic Measures Library and Toolkit: fast computation of semantic similarity and relatedness using biomedical ontologies
 Sébastien Harispe*, Sylvie Ranwez, Stefan Janaqi and Jacky Montmain
@@ -78,7 +78,7 @@ Bioinformatics 2014 30(5): 740-742. doi: 10.1093/bioinformatics/btt581
 ```
 
 ### 2.2. RDF2Vec Embeddings Semantic Similariy
-To calculate RDF2Vec embeddings, an RDF2Vec python implementation was used. The implementation is available on GitHub https://github.com/IBCNServices/pyRDF2Vec.
+To calculate RDF2Vec embeddings, an [RDF2Vec python implementation](https://github.com/IBCNServices/pyRDF2Vec) was used. The implementation is available on .
 ```
 RDF2Vec: RDF graph embeddings for data mining
 Petara Ristoski and Heiko Paulheim
