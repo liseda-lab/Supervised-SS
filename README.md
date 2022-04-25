@@ -173,5 +173,5 @@ We compute the static similarity for each semantic aspect and use, as baselines,
 
 For running the baselines (static combinations of semantic aspects), run the command:
 ```
-python3 Regression/run_withPartitions.py True
+python3 Regression/run_baselines.py
 ```
