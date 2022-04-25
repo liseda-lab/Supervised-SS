@@ -28,6 +28,8 @@ The tookit receives a tab-delimited text file with 3 columns:
 Regarding the KG, the toolkit takes as input an ontology file in OWL format and an instance annotation file in 2.0. GAF format or tsv format.
 GAF format (http://geneontology.org/docs/go-annotation-file-gaf-format-2.0/). GAFs are tab-delimited plain text files, where each line in the file represents a single association between a entity and a ontology term/class. 
 
+The input files must be defined in the [config.py](https://github.com/liseda-lab/Supervised-SS/blob/main/config.py) file.
+
 
 ### Biomedical Benchmark Datasets
 
@@ -39,6 +41,14 @@ For the HPO-dataset, the proxy similarity is based on phenotypic series.
 
 Regarding the semantic aspects, we consider the GO aspects as semantic aspects for the protein datasets.
 In addition to the three GO aspects, the similarity is also calculated for the HP phenotypic abnormality subgraph for the gene dataset. Therefore, instead of three semantic aspects, we consider four semantic aspects.
+
+
+## Run all Steps
+
+Run the command:
+```
+python3 run_all_cmds.py
+```
 
 
 ## 1. Semantic Aspects Selection 
@@ -115,7 +125,6 @@ Proceedings of EMNLP, 2018 (pp. 139-144)
 **NOTE**: OpenKE is only implemented for Linux system.
 
 The default parameters given by OpenKE are used.
-
 
 
 ## 3. Supervised Similarity Learning
