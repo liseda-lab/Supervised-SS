@@ -3,6 +3,7 @@
 #################
 
 """
+:param os: operating system
 :param dataset_name: name of the dataset
 :param proxy: proxy name (e.g. SEQ, PFAM, PhenSeries, PPI)
 :param ontology: the ontology file path
@@ -34,6 +35,7 @@ For more details, go to https://www.semantic-measures-library.org/sml/index.php?
 :param path_sa_file: the sa file path, it is generated in sa in ["roots", subroots"] but it is required if sa="manual"
 """
 
+OS = "linux"
 DATASET_NAME = "PPI_EC3"
 SPECIES = "ecoli"
 PROXY = "SEQ"
@@ -57,6 +59,7 @@ PATH_PARTITIONS = "Regression/Results/PPI_EC3/"
 RESULTS_PATH = "Regression/Results/PPI_EC3/SEQ"
 ALGORITHM = "LR"
 BASELINES = True
+
 
 SA = "roots"
 PATH_SA_FILE = "Data/GOdata/SemanticAspects.txt"
