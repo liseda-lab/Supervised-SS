@@ -77,7 +77,7 @@ Sébastien Harispe*, Sylvie Ranwez, Stefan Janaqi and Jacky Montmain
 Bioinformatics 2014 30(5): 740-742. doi: 10.1093/bioinformatics/btt581
 ```
 
-### 2.2. RDF2Vec Embeddings Semantic Similariy
+### 2.2. RDF2Vec Embeddings Semantic Similarity
 To calculate RDF2Vec embeddings, an [RDF2Vec python implementation](https://github.com/IBCNServices/pyRDF2Vec) was used.
 ```
 RDF2Vec: RDF graph embeddings for data mining
@@ -103,7 +103,7 @@ Proceedings of EMNLP, 2018 (pp. 139-144)
 The default parameters given by OpenKE are used, but they can be changed in the beginning of the [python file](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/run_OpenKEmodel.py).
 
 
-### 2.4. OWL2Vec* Embeddings Computation
+### 2.4. OWL2Vec* Embeddings Semantic Similarity
 
 To calculate OWL2Vec* embeddings, it was used the implementation available on [GitHub](https://github.com/KRR-Oxford/OWL2Vec-Star).
 ```
