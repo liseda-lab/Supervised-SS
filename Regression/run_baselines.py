@@ -8,6 +8,8 @@ import copy
 import gc
 import os
 
+from run_withPartitions import *
+
 sys.path.append(os.getcwd()) #add the env path
 from config import ALGORITHM, RESULTS_PATH, PATH_PARTITIONS, N_PARTITONS, PROXY, DATASET_FILE, DATASET_NAME, SS_MEASURE, PATH_SA_FILE
 
