@@ -1,8 +1,12 @@
 import os
+import sys
 import rdflib
 from rdflib.namespace import RDF, OWL, RDFS
 import networkx as nx
+
+sys.path.append(os.getcwd()) #add the env path
 from config import ONTOLOGY, SA, PATH_SA_FILE
+
 
 def ensure_dir(path):
     """
