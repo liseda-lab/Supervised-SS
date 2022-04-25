@@ -50,7 +50,6 @@ N_PARTITONS = 10
 PATH_PARTITIONS = "Regression/Results/PPI_EC3/"
 RESULTS_PATH = "Regression/Results/PPI_EC3/SEQ"
 ALGORITHM = "LR"
-BASELINES = True
 
 SA = "roots"
 PATH_SA_FILE = "Data/GOdata/SemanticAspects.txt"
