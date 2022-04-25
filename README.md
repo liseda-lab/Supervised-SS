@@ -57,13 +57,9 @@ For semantic similarity calculation, provide:
 * A ontology file in OWL format;
 * A annotations file in 2.0. or 2.1. 
 
-In Linux, compile the command:
+To run, compile the command:
 ```
-python3 SS_Calculation/Run_SS_calculation.py
-```
-To run in Windows
-```
-python3 SS_Calculation/Run_SS_calculation.py windows
+python3 SS_Calculation/Run_SS_calculation_SAs.py
 ```
 
 For a taxonomic SSM this command will create, a **SS file** with the SS between each pair of entities for each semantic aspect using the defined SSM. The description of this text file is in [SS_Calculation/SS_files/SS_file format_GO.txt](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/SS_files/SS_file_format_GO.txt) file. 
