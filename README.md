@@ -90,20 +90,7 @@ For the Weisfeiler-Lehman algorithm, we use as default walks with depth 8, and w
 However, all the parameters can be changed in the beginning of the [python file](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/run_RDF2VecEmbeddings.py).
 
 
-### 2.3. OpenKE Embeddings Semantic Similarity
-To compute embeddings using popular graph embeddings methods, OpenKE was used. OpenKE is an open-source framework for knowledge embedding organized by THUNLP based on the TensorFlow toolkit. OpenKE provides fast and stable toolkits, including the most popular knowledge representation learning (KRL) methods. More information is available on their [website](http://openke.thunlp.org/). The software is available on [GitHub](https://github.com/thunlp/OpenKE/tree/OpenKE-Tensorflow1.0) under a MIT License.
-```
-OpenKE: An Open Toolkit for Knowledge Embedding
-Xu Han and Shulin Cao and Xin Lv and Yankai Lin and Zhiyuan Liu and Maosong Sun and Juanzi Li
-Proceedings of EMNLP, 2018 (pp. 139-144)
-```
-
-**NOTE**: OpenKE is only implemented for Linux system.
-
-The default parameters given by OpenKE are used, but they can be changed in the beginning of the [python file](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/run_OpenKEmodel.py).
-
-
-### 2.4. OWL2Vec* Embeddings Semantic Similarity
+### 2.3. OWL2Vec* Embeddings Semantic Similarity
 
 To calculate OWL2Vec* embeddings, it was used the implementation available on [GitHub](https://github.com/KRR-Oxford/OWL2Vec-Star).
 ```
@@ -115,6 +102,20 @@ Machine Learning, 110(7), 1813-1845
 In OWL2Vec*, as default, a set of sequences was generated from Weisfeiler-Lehman subtree kernels.
 For the Weisfeiler-Lehman algorithm, we also use as default walks with depth 8, and we extracted a limited number of 500 random walks for each entity. The corpora of sequences were used to build a Skip-Gram model with the following parameters: window size=5; number of iterations=10; entity vector size=200.
 However, all the parameters can be changed in the beginning of the [python file](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/run_OWL2VecEmbeddings.py).
+
+
+### 2.4. OpenKE Embeddings Semantic Similarity
+To compute embeddings using popular graph embeddings methods, OpenKE was used. OpenKE is an open-source framework for knowledge embedding organized by THUNLP based on the TensorFlow toolkit. OpenKE provides fast and stable toolkits, including the most popular knowledge representation learning (KRL) methods. More information is available on their [website](http://openke.thunlp.org/). The software is available on [GitHub](https://github.com/thunlp/OpenKE/tree/OpenKE-Tensorflow1.0) under a MIT License.
+```
+OpenKE: An Open Toolkit for Knowledge Embedding
+Xu Han and Shulin Cao and Xin Lv and Yankai Lin and Zhiyuan Liu and Maosong Sun and Juanzi Li
+Proceedings of EMNLP, 2018 (pp. 139-144)
+```
+
+**NOTE**: OpenKE is only implemented for Linux system.
+
+The default parameters given by OpenKE are used.
+
 
 
 ## 3. Supervised Similarity Learning
