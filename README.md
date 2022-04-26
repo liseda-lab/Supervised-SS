@@ -1,4 +1,4 @@
-# The Supervised Semantic Similarity Toolkit
+<h1 align="center"> The Supervised Semantic Similarity Toolkit </h1>
 
 **SS**: Semantic Similarity; **SSM**: Semantic Similarity Measure; **GO**: Gene Ontology; **HPO**: Human Phenotype Ontology; **PPI**: Protein-Protein Interaction; **GP**: Genetic Programming; **LR**: Linear Regression; **XGB**: XGBoost; **RF**: Random Forest; **BR**: Bayesian Ridge; **DT**: Decision Tree; **MLP**: Multilayer Perceptron; **KNN**: K-Nearest Neighbor.
 
@@ -26,7 +26,7 @@ The tookit receives a tab-delimited text file with 3 columns:
 * 3rd column - Proxy Similarity. 
 
 Regarding the KG, the toolkit takes as input an ontology file in OWL format and an instance annotation file in 2.0. GAF format or tsv format.
-GAF format (http://geneontology.org/docs/go-annotation-file-gaf-format-2.0/). GAFs are tab-delimited plain text files, where each line in the file represents a single association between a entity and a ontology term/class. 
+GAF format (http://geneontology.org/docs/go-annotation-file-gaf-format-2.0/). GAFs are tab-delimited plain text files, where each line in the file represents a single association between an entity and an ontology term/class. 
 
 The input files must be defined in the [config.py](https://github.com/liseda-lab/Supervised-SS/blob/main/config.py) file.
 
@@ -43,7 +43,7 @@ Regarding the semantic aspects, we consider the GO aspects as semantic aspects f
 In addition to the three GO aspects, the similarity is also calculated for the HP phenotypic abnormality subgraph for the gene dataset. Therefore, instead of three semantic aspects, we consider four semantic aspects.
 
 
-## Run all Steps
+## Run the Toolkit
 
 Run the command:
 ```
@@ -64,17 +64,17 @@ python3 SA_Selection/run_SAs_selection.py
 ## (2) Taxonomic Semantic Similarity Computation
 For semantic similarity calculation, provide:
 * A dataset file with the previously described format;
-* A ontology file in OWL format;
-* A annotations file in 2.0. or 2.1. 
+* An ontology file in OWL format;
+* An annotation file in 2.0. or 2.1. 
 
 To run, compile the command:
 ```
 python3 SS_Calculation/run_SS_calculation_SAs.py
 ```
 
-For a taxonomic SSM this command will create, a **SS file** with the SS between each pair of entities for each semantic aspect using the defined SSM. The description of this text file is [here](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/SS_files/SS_file_format_GO.txt). 
+This command will create a **SS file** with the SS between each pair of entities for each semantic aspect using the defined taxonomic SSM. The description of this text file is [here](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/SS_files/SS_file_format_GO.txt).  
 
-For a embedding-based SSM, this command creates a **embedding SS file**. The description of this text file is [here](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/Embeddings_SS_files/SS_file_format_GO.txt). 
+For a embedding-based SSM, this command creates an **embedding SS file**. The description of this text file is [here](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/Embeddings_SS_files/SS_file_format_GO.txt). 
 In addition to the SS file, it creates **embedding files** (one for each semantic aspect).
 The description of the embedding text file is [here](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/Embeddings/Embeddings_format.txt).
 
@@ -96,8 +96,8 @@ International Semantic Web Conference, Springer, Cham, 2016 (pp. 498-514)
 ```
 
 As default, in RDF2Vec, a set of sequences was generated from Weisfeiler-Lehman subtree kernels.
-For the Weisfeiler-Lehman algorithm, we use as default walks with depth 8, and we extracted a limited number of 500 random walks for each entity. The corpora of sequences were used to build a Skip-Gram model with the following default parameters: window size=5; number of iterations=10; entity vector size=200.
-However, all the parameters can be changed in the beginning of the [python file](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/run_RDF2VecEmbeddings.py).
+Weisfeiler-Lehman algorithm uses walks with depth 8, and we extracted a limited number of 500 random walks for each entity. The corpora of sequences were used to build a Skip-Gram model with the following default parameters: window size=5; number of iterations=10; entity vector size=200.
+However, all the parameters can be changed at the beginning of the [python file](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/run_RDF2VecEmbeddings.py).
 
 
 ### (2.3) OWL2Vec* Embeddings Semantic Similarity
@@ -110,8 +110,8 @@ Machine Learning, 110(7), 1813-1845
 ```
 
 In OWL2Vec*, as default, a set of sequences was generated from Weisfeiler-Lehman subtree kernels.
-For the Weisfeiler-Lehman algorithm, we also use as default walks with depth 8, and we extracted a limited number of 500 random walks for each entity. The corpora of sequences were used to build a Skip-Gram model with the following parameters: window size=5; number of iterations=10; entity vector size=200.
-However, all the parameters can be changed in the beginning of the [python file](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/run_OWL2VecEmbeddings.py).
+Weisfeiler-Lehman algorithm also uses walks with depth 8, and we extracted a limited number of 500 random walks for each entity. The corpora of sequences were used to build a Skip-Gram model with the following parameters: window size=5; number of iterations=10; entity vector size=200.
+However, all the parameters can be changed at the beginning of the [python file](https://github.com/liseda-lab/Supervised-SS/blob/main/SS_Calculation/run_OWL2VecEmbeddings.py).
 
 
 ### (2.4) OpenKE Embeddings Semantic Similarity
@@ -122,15 +122,16 @@ Xu Han and Shulin Cao and Xin Lv and Yankai Lin and Zhiyuan Liu and Maosong Sun 
 Proceedings of EMNLP, 2018 (pp. 139-144)
 ```
 
-**NOTE**: OpenKE is only implemented for Linux system.
+**NOTE**: OpenKE is only implemented for the Linux system.
 
 The default parameters given by OpenKE are used.
 
 
 ## (3) Supervised Similarity Learning
 
-To train a supervised semantic similarity according to the similarity proxy, eight representative ML algorithms for regression can be employed: LR, BR, KNN, GP, DT, MLP, RF, XGB. 
-Except for GP, XGB and RF, the default parameters are the default scikit-learn values. 
+Eight representative ML algorithms for regression can be employed to train a supervised semantic similarity according to the similarity proxy: LR, BR, KNN, GP, DT, MLP, RF, and XGB. 
+
+Except for GP, XGB, and RF, the default parameters are the default scikit-learn values. 
 For running GP, we use [gplearn 3.0](https://gplearn.readthedocs.io/en/stable/), a freely available package that runs with the scikit-learn library with the parameters:
 
 Parameter | Value
@@ -149,7 +150,7 @@ Probability of hoist mutation on a tournament winner | 0.01
 Probability of point mutation on a tournament winner | 0.01
 Probability of any given node will be mutated, for point mutation | 0.05
 
-For XGB, we use the [XGBoost 1.1.1 package](https://xgboost.readthedocs.io), with the values of some parameters altered to maximize the performance of the model, through grid search. 
+For XGB, we use the [XGBoost 1.1.1 package](https://xgboost.readthedocs.io), with the values of some parameters altered to maximize the model's performance through grid search. 
 
 Parameter | Value
 ------------- | -------------
