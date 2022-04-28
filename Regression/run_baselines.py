@@ -7,11 +7,27 @@ import sys
 import copy
 import gc
 import os
+from scipy.stats import pearsonr
 
 from run_withPartitions import *
 
 sys.path.append(os.getcwd()) #add the env path
 from config import ALGORITHM, RESULTS_PATH, PATH_PARTITIONS, N_PARTITONS, PROXY, DATASET_FILE, DATASET_NAME, SS_MEASURE, PATH_SA_FILE, PATH_SS_FILE
+
+def performance_baselines(list_SS, list_proxy, aspects):
+    """
+    Compute the correlation for the static baselines.
+    :param list_SS: list of lists. Each list represents an entity pair and its elements are the static similarity values (one for each static baseline);
+    :param list_proxy: list of proxy values for each entity pair of datasets;
+    :param aspects: list of static baselines;
+    :return: list of pearson correlation coefficient values for each static baseline.
+    """
+    corrs_baselines = []
+    for i in range(len(aspects)):
+        SS_baseline = [SS[i] for SS in list_SS]
+        corr = pearsonr(SS_baseline, list_proxy)[0]
+        corrs_baselines.append(corr)
+    return corrs_baselines
 
 def baselines(algorithms, proxy, path_file_SS, path_dataset_file, dataset_name, path_results, n_partition,
                          path_partition, SSM, aspects, run_baselines=False):
@@ -39,7 +55,7 @@ def baselines(algorithms, proxy, path_file_SS, path_dataset_file, dataset_name, 
     n_pairs = len(list_labels)
     for Run in range(1, n_partition + 1):
 
-        file_partition = path_partition + str(Run) + '.txt'
+        file_partition = path_partition + 'Indexes__crossvalidationTest__Run' + str(Run) + '.txt'
         test_index = process_indexes_partition(file_partition)
         train_index = list(set(range(0, n_pairs)) - set(test_index))
 
@@ -58,7 +74,7 @@ def baselines(algorithms, proxy, path_file_SS, path_dataset_file, dataset_name, 
         print('#########' + SSM + '#########')
 
         start_manualselection = time.time()
-        corr_baselines = baselines.performance_baselines(list_ss_baselines, list_labels, aspects_baselines)
+        corr_baselines = performance_baselines(list_ss_baselines, list_labels, aspects_baselines)
         for i in range(len(aspects_baselines)):
             dict_baselines[aspects_baselines[i]].append(corr_baselines[i])
 
