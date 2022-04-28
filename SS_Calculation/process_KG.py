@@ -22,7 +22,7 @@ def construct_kg_aspect(ontology_kg, annotations_file_path, ontology_annotations
     file_annot = open(annotations_file_path , 'r')
     file_annot.readline()
 
-    prots = []
+    ents = []
     for annot in file_annot:
 
         if ontology_annotations_format == 'gaf':
