@@ -51,7 +51,7 @@ def get_taxonomic_measures():
 
 
 
-def run_taxonomic_SS_calculation(os, ontology, ontology_annotations, ontology_annotations_format,  namespace, namespace_uri, dataset_file, path_SS_file, SS_measure, semantic_aspects, name_semantic_aspects):
+def run_taxonomic_SS_calculation(os_system, ontology, ontology_annotations, ontology_annotations_format,  namespace, namespace_uri, dataset_file, path_SS_file, SS_measure, semantic_aspects, name_semantic_aspects):
 
     str_aspects = ''
     str_name_aspects = ''
@@ -60,12 +60,12 @@ def run_taxonomic_SS_calculation(os, ontology, ontology_annotations, ontology_an
         name, aspect = name_aspects[i], semantic_aspects[i]
         str_name_aspects = str_name_aspects + '"' + name + '" '
 
-    if os == "windows":
+    if os_system == "windows":
         command_1 = 'javac -cp ".;./SS_Calculation/jar_files/*" ./SS_Calculation/Run_SS_calculation_SAs.java'
         os.system(command_1)
         command_2 = 'java -cp ".;./SS_Calculation/jar_files/*" SS_Calculation/Run_SS_calculation_SAs' + ' "' + ontology + '" "' + ontology_annotations + '" "' + namespace + '" "' + namespace_uri + '" "' + ontology_annotations_format + '" "' + dataset_file + '" "' + path_SS_file + '" "' + SS_measure + '" "' + str(len(semantic_aspects)) + '" '
         os.system(command_2 + str_aspects)
-    elif os == "linux":
+    elif os_system == "linux":
         command_1 = 'javac -cp ".:./SS_Calculation/jar_files/*" ./SS_Calculation/Run_SS_calculation_SAs.java'
         os.system(command_1)
         command_2 = 'java -cp ".:./SS_Calculation/jar_files/*" SS_Calculation/Run_SS_calculation_SAs' + ' "' + ontology + '" "' + ontology_annotations + '" "' + namespace + '" "' + namespace_uri + '" "' + ontology_annotations_format + '" "' + dataset_file + '" "' + path_SS_file + '" "' + SS_measure + '" "' + str(len(semantic_aspects)) + '" '
