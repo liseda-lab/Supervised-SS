@@ -42,7 +42,7 @@ NAMESPACE = "GO"
 NAMESPACE_URI = "http://purl.obolibrary.org/obo/GO_"
 DATASET_FILE = "Data/kgsimDatasets/PPI_EC3/SEQ/PPI_EC3.txt"
 
-PATH_SS_FILE = "SS_Calculation/SS_files/PPI_EC3"
+PATH_SS_FILE = "SS_Calculation/SS_files/PPI_EC3/gic_ICseco.txt"
 SS_MEASURE = "gic_ICseco"
 PATH_EMBEDDING = "SS_Calculation/Embeddings/PPI_EC3/"
 
