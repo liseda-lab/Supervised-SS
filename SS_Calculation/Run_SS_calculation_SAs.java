@@ -332,8 +332,9 @@ public class Run_SS_calculation_SAs {
             aspects.add(args[9+i]);
         }
 
-		Convert_GAF_versions goa_annot = new Convert_GAF_versions(args[1], args[1]);
-        goa_annot.run();
+        if (args[4].equals("gaf")){
+			Convert_GAF_versions goa_annot = new Convert_GAF_versions(args[1], args[1]);
+			goa_annot.run();}
 		
         datasets = new Calculate_sim_pair(args[0], args[1], args[2],  args[3], args[4], args[5], args[6],args[7], aspects);
         datasets.run();
