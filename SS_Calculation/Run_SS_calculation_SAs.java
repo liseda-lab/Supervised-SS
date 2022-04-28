@@ -98,17 +98,11 @@ class Calculate_sim_pair {
             graphs_aspect.add(graph);
         }
 
-        if(SSM.equals("all")){
-            ArrayList<String> pair_ents = get_ents_dataset(path_dataset);
-            semantic_measures_2ents(graphs_aspect, factory, pair_ents, SSM_file);
+        System.out.println(path_dataset);
+        System.out.println(SSM_file);
+        ArrayList<String> pair_ents = get_ents_dataset(path_dataset);
+        given_semantic_measures_2ents(graphs_aspect, factory, pair_ents, SSM_file, SSM);
 
-        }else{
-            System.out.println(path_dataset);
-            System.out.println(SSM_file);
-            ArrayList<String> pair_ents = get_ents_dataset(path_dataset);
-            given_semantic_measures_2ents(graphs_aspect, factory, pair_ents, SSM_file, SSM);
-
-        }
         t.stop();
         t.elapsedTime();
     }
@@ -210,48 +204,6 @@ class Calculate_sim_pair {
         file.close();
     }
 
-    private void semantic_measures_2ents(ArrayList<G> graphs_aspect, URIFactory factory, ArrayList<String> pairs_ents, String SSM_file) throws SLIB_Ex_Critic, FileNotFoundException {
-
-        ICconf ic_Seco = new IC_Conf_Topo("Seco", SMConstants.FLAG_ICI_SECO_2004);
-        ICconf ic_Resnik = new IC_Conf_Corpus("resnik", SMConstants.FLAG_IC_ANNOT_RESNIK_1995_NORMALIZED);
-
-        SMconf SimGIC_icSeco = new SMconf("gic", SMConstants.FLAG_SIM_GROUPWISE_DAG_GIC);
-        SimGIC_icSeco.setICconf(ic_Seco);
-
-        SMconf SimGIC_icResnik = new SMconf("gic", SMConstants.FLAG_SIM_GROUPWISE_DAG_GIC);
-        SimGIC_icResnik.setICconf(ic_Resnik);
-
-        SMconf Resnik_icSeco = new SMconf("resnik", SMConstants.FLAG_SIM_PAIRWISE_DAG_NODE_RESNIK_1995);
-        Resnik_icSeco.setICconf(ic_Seco);
-
-        SMconf Resnik_icResnik = new SMconf("resnik", SMConstants.FLAG_SIM_PAIRWISE_DAG_NODE_RESNIK_1995);
-        Resnik_icResnik.setICconf(ic_Resnik);
-
-        SMconf max = new SMconf("max", SMConstants.FLAG_SIM_GROUPWISE_MAX);
-        SMconf bma = new SMconf("bma", SMConstants.FLAG_SIM_GROUPWISE_BMA);
-
-        ArrayList<SM_Engine> engines_aspect =new ArrayList<SM_Engine>();
-        for(G graph: graphs_aspect){
-            SM_Engine engine = new SM_Engine(graph);
-            engines_aspect.add(engine);
-        }
-
-        String filename_ResnikMax_icSeco = SSM_file + "/ss_ResnikMax_ICSeco.txt";
-        pairwise_measure_file(graphs_aspect, engines_aspect, factory, pairs_ents, filename_ResnikMax_icSeco, Resnik_icSeco, max);
-//        String filename_ResnikMax_icResnik = SSM_file + "/ss_ResnikMax_ICResnik.txt";
-//        pairwise_measure_file(graphs_aspect, engines_aspect, factory, pairs_ents, filename_ResnikMax_icResnik, Resnik_icResnik, max);
-
-        String filename_ResnikBMA_icSeco = SSM_file + "/ss_ResnikBMA_ICSeco.txt";
-        pairwise_measure_file(graphs_aspect, engines_aspect, factory, pairs_ents, filename_ResnikBMA_icSeco, Resnik_icSeco, bma);
-//        String filename_ResnikBMA_icResnik = SSM_file + "/ss_ResnikBMA_ICResnik.txt";
-//        pairwise_measure_file(graphs_aspect, engines_aspect, factory, pairs_ents, filename_ResnikBMA_icResnik, Resnik_icResnik, bma);
-
-        String filename_SimGIC_icSeco = SSM_file + "/ss_simGIC_ICSeco.txt";
-        groupwise_measure_file(graphs_aspect, engines_aspect, factory, pairs_ents, filename_SimGIC_icSeco, SimGIC_icSeco);
-//        String filename_SimGIC_icResnik = SSM_file + "/ss_simGIC_ICResnik.txt";
-//        groupwise_measure_file(graphs_aspect, engines_aspect, factory, pairs_ents, filename_SimGIC_icResnik, SimGIC_icResnik);
-
-    }
 
     private void given_semantic_measures_2ents(ArrayList<G> graphs_aspect, URIFactory factory, ArrayList<String> pairs_ents, String SSM_file, String SSM) throws SLIB_Ex_Critic , FileNotFoundException{
 
@@ -297,8 +249,7 @@ class Calculate_sim_pair {
             ssm.setICconf(ic);
             aggregation = new SMconf(flags_ssm.get(components_ssm[1]));
 
-            String filename_SSM = SSM_file + "/ss_" + SSM + ".txt";
-            pairwise_measure_file(graphs_aspect, engines_aspect, factory, pairs_ents, filename_SSM, ssm, aggregation);
+            pairwise_measure_file(graphs_aspect, engines_aspect, factory, pairs_ents, SSM_file, ssm, aggregation);
 
         }else{
             ic = new IC_Conf_Topo(flags_ssm.get(components_ssm[1]));
@@ -307,8 +258,7 @@ class Calculate_sim_pair {
             }
             ssm = new SMconf(flags_ssm.get(components_ssm[0]));
             ssm.setICconf(ic);
-            String filename_SSM = SSM_file + "/ss_" + SSM + ".txt";
-            groupwise_measure_file(graphs_aspect, engines_aspect, factory, pairs_ents, filename_SSM, ssm);
+            groupwise_measure_file(graphs_aspect, engines_aspect, factory, pairs_ents, SSM_file, ssm);
         }
     }
 }
