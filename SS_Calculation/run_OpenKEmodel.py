@@ -204,8 +204,8 @@ def construct_model(dic_nodes, dic_relations, list_triples, path_output, models_
         # Set the knowledge embedding model
         con.set_model(models.TransR)
 
-     # Train the model.
-     con.run()
+    # Train the model.
+    con.run()
 
 
 
