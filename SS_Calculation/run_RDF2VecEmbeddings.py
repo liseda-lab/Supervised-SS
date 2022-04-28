@@ -56,10 +56,6 @@ def calculate_embeddings(g, ents, path_output, name_embedding, domain):
     if type_word2vec == 'skip-gram':
         sg_value = 1
 
-    print('----------------------------------------------------------------------------------------')
-    print('Vector size: ' + str(size_value))
-    print('Type Word2vec: ' + type_word2vec)
-
     if sampler_type.lower() == 'uniform':
         sampler = UniformSampler()
     elif sampler_type.lower() == 'predfreq':
