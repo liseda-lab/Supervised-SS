@@ -30,6 +30,48 @@ import slib.utils.impl.Timer;
 import java.util.HashMap;
 
 
+/*
+This class is responsible for convertng GAF 2.1 to GAF 2.0, the format accepted by SML
+ */
+class Convert_GAF_versions {
+    // 2 arguments: annot and new_annot
+    // annot is the file annotations path in GAF.2.1 version
+    // new_annot is the new file annotations path in GAF 2.0 version
+    public String annot;
+    public String new_annot;
+
+    public Convert_GAF_versions(String arg1, String arg2){
+        annot = arg1;
+        new_annot = arg2;
+    }
+
+    public void run() throws FileNotFoundException , IOException {
+
+        PrintWriter new_file = new PrintWriter(new_annot);
+        new_file.println("!gaf-version: 2.0");
+
+        // Open the file with annotations
+        FileInputStream file_annot = new FileInputStream(annot);
+        BufferedReader br = new BufferedReader(new InputStreamReader(file_annot));
+
+        String strLine;
+        // Read file line by line
+        while ((strLine = br.readLine()) != null){
+            if (!strLine.startsWith("!") || !strLine.isEmpty() || strLine != null  || strLine!= ""){
+                ArrayList<String> fields = new ArrayList<String>(Arrays.asList(strLine.split("\t")));
+                if (fields.size()>12){ // verify if the annotation have taxon
+                    fields.set(7 , fields.get(7).replace("," , "|"));
+                    String newLine = String.join("\t" , fields);
+                    new_file.println(newLine);
+                }
+            }
+        }
+
+        new_file.close();
+        file_annot.close();
+    }
+}
+
 
 /*
 This class is responsible for calculating SSM for a list of protein pairs files of the same species (using same GAF file)
@@ -290,6 +332,9 @@ public class Run_SS_calculation_SAs {
             aspects.add(args[9+i]);
         }
 
+		Convert_GAF_versions goa_annot = new Convert_GAF_versions(args[1], args[1]);
+        goa_annot.run();
+		
         datasets = new Calculate_sim_pair(args[0], args[1], args[2],  args[3], args[4], args[5], args[6],args[7], aspects);
         datasets.run();
     }
