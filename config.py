@@ -44,7 +44,7 @@ DATASET_FILE = "Data/kgsimDatasets/PPI_EC3/SEQ/PPI_EC3.txt"
 
 PATH_SS_FILE = "SS_Calculation/SS_files/PPI_EC3"
 SS_MEASURE = "gic_ICseco"
-PATH_EMBEDDING = "SS_Embedding_Calculation/Embeddings/PPI_EC3/"
+PATH_EMBEDDING = "SS_Calculation/Embeddings/PPI_EC3/"
 
 N_PARTITONS = 10
 PATH_PARTITIONS = "Regression/Results/PPI_EC3/"
