@@ -32,7 +32,7 @@ def construct_kg_aspect(ontology_kg, annotations_file_path, ontology_annotations
             id_ent, ont_term = annot[:-1].split('\t')
 
         url_ont_term = namespace_uri + ont_term.split(':')[1]
-        url_ent =  namespace_uri + id_ent
+        url_ent =  "http://" + id_ent
 
         if ((rdflib.term.URIRef(url_ont_term), None, None) in g_domain) or ((None, None, (rdflib.term.URIRef(url_ont_term)))in g_domain):
             g_domain.add((rdflib.term.URIRef(url_ent), rdflib.term.URIRef('http://hasAnnotation') , rdflib.term.URIRef(url_ont_term)))
