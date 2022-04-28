@@ -78,8 +78,7 @@ def get_semantic_aspects_subroot(ontology):
     name_aspects = []
     for aspect in semantic_aspects:
         for (sub, pred, obj) in g.triples((rdflib.term.URIRef(aspect), RDFS.label, None)):
-            name_aspect = str(obj)
-            name_aspects.append((aspect, name_aspect))
+            name_aspects.append(str(obj))
 
     return semantic_aspects, name_aspects
 
