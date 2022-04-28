@@ -11,7 +11,7 @@ import os
 from run_withPartitions import *
 
 sys.path.append(os.getcwd()) #add the env path
-from config import ALGORITHM, RESULTS_PATH, PATH_PARTITIONS, N_PARTITONS, PROXY, DATASET_FILE, DATASET_NAME, SS_MEASURE, PATH_SA_FILE
+from config import ALGORITHM, RESULTS_PATH, PATH_PARTITIONS, N_PARTITONS, PROXY, DATASET_FILE, DATASET_NAME, SS_MEASURE, PATH_SA_FILE, PATH_SS_FILE
 
 def baselines(algorithms, proxy, path_file_SS, path_dataset_file, dataset_name, path_results, n_partition,
                          path_partition, SSM, aspects, run_baselines=False):
