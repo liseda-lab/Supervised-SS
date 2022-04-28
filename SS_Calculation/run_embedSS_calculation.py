@@ -30,8 +30,8 @@ def process_dataset(file_dataset_path, namespace_uri):
         ent1, ent2 = split1[0], split1[1]
         proxy_value = float(split1[-1][:-1])
 
-        url_ent1 = namespace_uri + ent1
-        url_ent2 = namespace_uri + ent2
+        url_ent1 = 'http://' + ent1
+        url_ent2 = 'http://' + ent2
 
         ents_proxy_list.append([(url_ent1, url_ent2), proxy_value])
     dataset.close()
@@ -47,7 +47,7 @@ def process_embedding_files(namespace_uri, file_dataset_path, list_embeddings_fi
     :return: new similarity file;
     """
 
-    ents_proxy_list = process_dataset_prots(file_dataset_path, namespace_uri)
+    ents_proxy_list = process_dataset(file_dataset_path, namespace_uri)
 
     list_dict = []
     for embedding_file in list_embeddings_files:
@@ -76,6 +76,3 @@ def process_embedding_files(namespace_uri, file_dataset_path, list_embeddings_fi
 
         o.write('\n')
     o.close()
-
-
-
