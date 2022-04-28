@@ -84,7 +84,7 @@ def run_embedding_SS_calculation(ontology, ontology_annotations, ontology_annota
         list_embeddings_files = run_OpenKEmodel.run_embedddings_aspect(ontology, ontology_annotations, ontology_annotations_format, namespace_uri, path_embedding, SS_measure, semantic_aspects, name_semantic_aspects)
 
     #### Computing embedding-based semantic similarity
-    run_embedSS_calculation.process_embedding_files(namespace_uri, dataset_file, list_embeddings_files, path_SS_file + "/embedss_" + SS_measure + ".txt")
+    run_embedSS_calculation.process_embedding_files(namespace_uri, dataset_file, list_embeddings_files, path_SS_file)
 
 
 
