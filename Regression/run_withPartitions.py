@@ -11,7 +11,7 @@ import os
 import ML
 
 sys.path.append(os.getcwd()) #add the env path
-from config import ALGORITHM, RESULTS_PATH, PATH_PARTITIONS, N_PARTITONS, PROXY, DATASET_FILE, DATASET_NAME, SS_MEASURE, PATH_SA_FILE
+from config import ALGORITHM, RESULTS_PATH, PATH_PARTITIONS, N_PARTITONS, PROXY, DATASET_FILE, DATASET_NAME, SS_MEASURE, PATH_SA_FILE, PATH_SS_FILE
 
 #####################
 ##    Functions    ##
