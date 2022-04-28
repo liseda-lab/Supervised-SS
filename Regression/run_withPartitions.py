@@ -158,7 +158,7 @@ def run_cross_validation(algorithms, proxy, path_file_SS, path_dataset_file, dat
     n_pairs = len(list_labels)
     for Run in range(1, n_partition + 1):
 
-        file_partition = path_partition + str(Run) + '.txt'
+        file_partition = path_partition + 'Indexes__crossvalidationTest__Run' + str(Run) + '.txt'
         test_index = process_indexes_partition(file_partition)
         train_index = list(set(range(0, n_pairs)) - set(test_index))
         
