@@ -100,7 +100,7 @@ class Calculate_sim_pair {
         System.out.println(path_dataset);
         System.out.println(SSM_file);
         ArrayList<String> pair_ents = get_ents_dataset(path_dataset);
-        given_semantic_measures_2ents(graphs_aspect, factory, pair_ents, SSM_file, SSM);
+        given_semantic_measures_2ents(graphs_aspect, factory, pair_ents, SSM_file, SSM, namespace_uri);
 
         t.stop();
         t.elapsedTime();
@@ -123,7 +123,7 @@ class Calculate_sim_pair {
         return pairs_ents;
     }
 
-    private void groupwise_measure_file(ArrayList<G> graphs_aspect, ArrayList<SM_Engine> engines_aspect, URIFactory factory, ArrayList<String> pairs_ents, String SSM_file, SMconf ssm) throws SLIB_Ex_Critic, FileNotFoundException {
+    private void groupwise_measure_file(ArrayList<G> graphs_aspect, ArrayList<SM_Engine> engines_aspect, URIFactory factory, ArrayList<String> pairs_ents, String SSM_file, SMconf ssm, String namespace_uri) throws SLIB_Ex_Critic, FileNotFoundException {
 
         double sim;
         PrintWriter file = new PrintWriter(SSM_file);
@@ -163,7 +163,7 @@ class Calculate_sim_pair {
         file.close();
     }
 
-    private void pairwise_measure_file(ArrayList<G> graphs_aspect, ArrayList<SM_Engine> engines_aspect,  URIFactory factory, ArrayList<String> pairs_ents, String SSM_file, SMconf ssm, SMconf aggregation) throws SLIB_Ex_Critic, FileNotFoundException {
+    private void pairwise_measure_file(ArrayList<G> graphs_aspect, ArrayList<SM_Engine> engines_aspect,  URIFactory factory, ArrayList<String> pairs_ents, String SSM_file, SMconf ssm, SMconf aggregation, String namespace_uri) throws SLIB_Ex_Critic, FileNotFoundException {
 
         double sim;
         PrintWriter file = new PrintWriter(SSM_file);
@@ -204,7 +204,7 @@ class Calculate_sim_pair {
     }
 
 
-    private void given_semantic_measures_2ents(ArrayList<G> graphs_aspect, URIFactory factory, ArrayList<String> pairs_ents, String SSM_file, String SSM) throws SLIB_Ex_Critic , FileNotFoundException{
+    private void given_semantic_measures_2ents(ArrayList<G> graphs_aspect, URIFactory factory, ArrayList<String> pairs_ents, String SSM_file, String SSM, String namespace_uri) throws SLIB_Ex_Critic , FileNotFoundException{
 
         String[] components_ssm = SSM.split("_");
         ICconf ic;
@@ -248,7 +248,7 @@ class Calculate_sim_pair {
             ssm.setICconf(ic);
             aggregation = new SMconf(flags_ssm.get(components_ssm[1]));
 
-            pairwise_measure_file(graphs_aspect, engines_aspect, factory, pairs_ents, SSM_file, ssm, aggregation);
+            pairwise_measure_file(graphs_aspect, engines_aspect, factory, pairs_ents, SSM_file, ssm, aggregation, namespace_uri);
 
         }else{
             ic = new IC_Conf_Topo(flags_ssm.get(components_ssm[1]));
@@ -257,7 +257,7 @@ class Calculate_sim_pair {
             }
             ssm = new SMconf(flags_ssm.get(components_ssm[0]));
             ssm.setICconf(ic);
-            groupwise_measure_file(graphs_aspect, engines_aspect, factory, pairs_ents, SSM_file, ssm);
+            groupwise_measure_file(graphs_aspect, engines_aspect, factory, pairs_ents, SSM_file, ssm, namespace_uri);
         }
     }
 }
@@ -288,7 +288,7 @@ public class Run_SS_calculation_SAs {
         for (int i = 0; i < n; i++) {
             aspects.add(args[9+i]);
         }
-
+		
         datasets = new Calculate_sim_pair(args[0], args[1], args[2],  args[3], args[4], args[5], args[6],args[7], aspects);
         datasets.run();
     }
