@@ -47,7 +47,7 @@ def get_taxonomic_measures():
         for agg in aggrs:
             for ic in ics:
                 pairwises_SSMs.append(pairwise + '_' + agg + '_' + ic)
-    return groupwises+pairwises
+    return groupwises_SSMs+pairwises_SSMs
 
 
 
@@ -57,7 +57,7 @@ def run_taxonomic_SS_calculation(os, ontology, ontology_annotations, ontology_an
     str_name_aspects = ''
     for i in range(len(semantic_aspects)):
         str_aspects = str_aspects + '"' + semantic_aspects[i] + '" '
-        name, aspect = name_aspects[i]
+        name, aspect = name_aspects[i], semantic_aspects[i]
         str_name_aspects = str_name_aspects + '"' + name + '" '
 
     if os == "windows":
