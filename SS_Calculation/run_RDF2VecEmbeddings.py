@@ -115,7 +115,7 @@ def run_embedddings_aspect(ontology_file_path, annotations_file_path, ontology_a
 
         path_output_aspect = path_output + '/' + name_aspect + '/'
         ensure_dir(path_output_aspect)
-        list_embeddings_files.append(path_output_aspect)
+        list_embeddings_files.append(path_output_aspect + 'Embeddings_rdf2vec_' + str(type_word2vec) + '_' + walker_type + '_' + name_aspect + '.txt')
         
         calculate_embeddings(g, ents, path_output_aspect, "rdf2vec", name_aspect)
 
