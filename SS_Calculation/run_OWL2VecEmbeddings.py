@@ -305,14 +305,15 @@ def run_embedddings_aspect(ontology_file_path, annotations_file_path, ontology_a
 
         path_output_aspect = path_output + '/' + name_aspect + '/'
         ensure_dir(path_output_aspect)
-        list_embeddings_files.append(path_output_aspect)
 
         g.serialize(destination=path_output_aspect + "KG_" + name_aspect + ".owl")
         embeddings = run_OWL2Vec(path_output_aspect + "KG_" + name_aspect + ".owl", ents)
         embedding_file_path = path_output_aspect + '/Embeddings_owl2vec_skip-gram_wl_' + name_aspect + '.txt'
         write_embeddings(embedding_file_path, ents, embeddings)
+        list_embeddings_files.append(embedding_file_path)
 
     return list_embeddings_files
+
 
 
 
