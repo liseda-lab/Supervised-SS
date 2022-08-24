@@ -61,7 +61,7 @@ If the SAs are not given manually, run the command:
 python3 SA_Selection/run_SAs_selection.py
 ```
 
-## (2) Taxonomic Semantic Similarity Computation
+## (2) Semantic Similarity Computation
 For semantic similarity calculation, provide:
 * A dataset file with the previously described format;
 * An ontology file in OWL format;
