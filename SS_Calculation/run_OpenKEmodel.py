@@ -35,7 +35,7 @@ def ensure_dir(path):
 
 
 
-def construct_model(dic_nodes, dic_relations, list_triples, path_output, models_embedding, domain):
+def construct_model(dic_nodes, dic_relations, list_triples, path_output, model_embedding, domain):
     """
     Construct and embedding model and compute embeddings.
     :param dic_nodes: dictionary with KG nodes and respective ids;
