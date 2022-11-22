@@ -271,7 +271,7 @@ def run_embedddings_aspect(ontology, ontology_annotations, ontology_annotations_
         ensure_dir(path_output + model_embedding)
 
         path_embeddings_output = path_embedding + '/' + name_aspect + '/'  + 'Embeddings_' + '_' + model_embedding + "_" + name_aspect + '.txt'
-        dic_nodes, dic_relations, list_triples = process_KG.buildIds(Graph)
+        dic_nodes, dic_relations, list_triples = process_KG.buildIds(g)
         construct_model(dic_nodes, dic_relations, list_triples, path_output, model_embedding, name_aspect)
         write_embeddings(path_model_json, path_embeddings_output, ents, dic_nodes)
         list_embeddings_files.append(path_embeddings_output)
