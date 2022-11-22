@@ -80,9 +80,9 @@ def construct_model(dic_nodes, dic_relations, list_triples, path_output, model_e
     print('MODEL: ' + model_embedding)
 
     # Models will be exported via tf.Saver() automatically.
-    con.set_export_files(path_output + model_embedding + "/model_" + species + "_" + domain + ".vec.tf", 0)
+    con.set_export_files(path_output + model_embedding + "/model_" + domain + ".vec.tf", 0)
     # Model parameters will be exported to json files automatically.
-    con.set_out_files(path_output + model_embedding + "/embedding_" + species + "_" + domain + ".vec.json")
+    con.set_out_files(path_output + model_embedding + "/embedding_" + domain + ".vec.json")
 
     if model_embedding == 'ComplEx':
         con.set_work_threads(8)
