@@ -1,5 +1,9 @@
 <h1 align="center"> The Supervised Semantic Similarity Toolkit </h1>
 
+This repository provides an implementation described in the paper: https://ieeexplore.ieee.org/abstract/document/10148991. 
+
+## Acronyms
+
 **SS**: Semantic Similarity; **SSM**: Semantic Similarity Measure; **GO**: Gene Ontology; **HPO**: Human Phenotype Ontology; **PPI**: Protein-Protein Interaction; **GP**: Genetic Programming; **LR**: Linear Regression; **XGB**: XGBoost; **RF**: Random Forest; **BR**: Bayesian Ridge; **DT**: Decision Tree; **MLP**: Multilayer Perceptron; **KNN**: K-Nearest Neighbor.
 
 
@@ -184,4 +188,20 @@ We compute the static similarity for each semantic aspect and use, as baselines,
 For running the baselines (static combinations of semantic aspects), run the command:
 ```
 python3 Regression/run_baselines.py
+```
+
+## How to Cite
+
+```
+@ARTICLE{10148991,
+  author={Sousa, Rita T. and Silva, Sara and Pesquita, Catia},
+  journal={IEEE Access}, 
+  title={Supervised Biomedical Semantic Similarity}, 
+  year={2023},
+  volume={11},
+  number={},
+  pages={60635-60645},
+  keywords={Semantics;Proteins;Ontologies;Protein engineering;Knowledge graphs;Biomedical measurement;Benchmark testing;Supervised learning;Semantic similarity;ontology;knowledge graph;supervised learning},
+  doi={10.1109/ACCESS.2023.3285406}
+}
 ```
